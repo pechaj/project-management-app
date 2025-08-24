@@ -1,10 +1,60 @@
-.App {
+.App1 {
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.NewBtn {
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  padding: 10px 20px;
+  cursor: pointer;
+  justify-content: right;
+}
+
+.ProjectList {
+  margin: 5px 200px;
+}
+.ProjectCard {
+  background-color: #cec9c9;
+  border: 1px solid #111010;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+
+  &.deleted {
+    background-color: darkred;
+  }
+}
+
+.TaskList {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.TaskCard {
+  background-color: #94b75f;
+  border: 1px solid #cfc5c5;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #82a34a;
+  }
+}
+
+.no-projects {
+  color: red;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,11 +65,11 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 30px;
   display: flex;
-  flex-direction: column;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }

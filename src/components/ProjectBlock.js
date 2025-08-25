@@ -13,6 +13,7 @@ export function TaskRow({ taskCode }) {
 }
 
 export default function ProjectBlock({ project }) {
+    // TODO: tahle komponenta se vola moc casto
     console.log("Rendering ProjectBlock for project:", project);
     return (
         <div className={"ProjectCard" + (project?.deleted ? " deleted" : "")}>

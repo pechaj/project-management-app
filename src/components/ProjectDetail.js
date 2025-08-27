@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { TaskRow } from "./ProjectBlock";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { EditProjectForm } from "./EditProjectForm";
 
 export default function ProjectDetail(){
     
@@ -10,6 +11,7 @@ export default function ProjectDetail(){
     // console.log("Project code from URL:", projectCode);
 
     const [project, setProject] = useState();
+    const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {
         const fetchProject = async () => {
@@ -29,8 +31,9 @@ export default function ProjectDetail(){
         return (<div className="loader"></div>);
     }
 
-    return (<div className="ProjectDetail">
-                <h2>{project.name}</h2>
+    return (
+        <div className="ProjectDetail">
+            <h2>{project.name}</h2>
                 <p><b>Notes: </b>{project.notes}</p>
                 <p><b>Deleted?</b> {project.deleted ? "Yes" : "No"}</p>
                 <div className="TaskList">
@@ -38,5 +41,13 @@ export default function ProjectDetail(){
                         <TaskRow key={task} taskCode={task} />
                     ))}
                 </div>
-            </div>)
+                <div>
+                    <button onClick={() => setEditMode(true)}>Edit Project</button>
+                </div>
+                {/* Edit form modal */}
+                {editMode && (
+                    <EditProjectForm project={project} onClose={() => setEditMode(false)} />
+                )}
+        </div>
+    )
 }

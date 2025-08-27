@@ -26,15 +26,15 @@ export default function TaskDetail() {
         return (<div className="loader"></div>);
     }
 
-    return (<div className="TaskDetail">
-                    <h2>{task.code}</h2>
-                    <p><b>Assigned to:</b> {task.projectId ?? "Unassigned"}</p>
-                    <p><b>Notes: </b>{task.descriptions}</p>
-                    <p><b>Deleted?</b> {task.deleted ? "Yes" : "No"}</p>
-                    <p><b>Deadline:</b> {task.deadline}</p>
-                    <p><b>Urgency:</b> {task.urgency}</p>
-                    <p><b>Place:</b> {task.place}</p>
-                    
-                    
-                </div>)
+    return (
+        <div className="TaskDetail">
+            <h2>{task.code}</h2>
+            <p><b>Assigned to:</b> {task.projectId ?? "Unassigned"}</p>
+            <p><b>Notes: </b>{task.descriptions}</p>
+            <p><b>Deleted?</b> {task.deleted ? "Yes" : "No"}</p>
+            <p><b>Deadline:</b> {task.deadline}</p>
+            <p><b>Urgency:</b> {task.urgency}</p>
+            <p><b>Place:</b> {task.place}</p>
+        </div>
+        )
 }

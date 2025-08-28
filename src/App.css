@@ -58,8 +58,9 @@
 }
 
 .loader {
-  height: 15px;
+  height: 30px;
   align-items: center;
+  display: flex;
   justify-content: center;
   aspect-ratio: 5;
   --_g:no-repeat radial-gradient(farthest-side,#000 94%,#0000);
@@ -86,12 +87,6 @@
   20%,30%      {border-radius:50%}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 30px;
@@ -105,13 +100,4 @@
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

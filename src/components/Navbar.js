@@ -3,14 +3,10 @@ import logo from '../logo.svg';
 
 function Navbar() {
     return (
-        <nav className="App-header">
-            <Link to="/projects"><img src={logo} style={{ width: '50px', height: '50px' }} alt="Logo" /></Link>
-            <p><b>Project Management App</b></p>
-            <ul>
-                <label htmlFor="activeProj">Show Active Projects</label>
-                <input id="activeProj" type="checkbox" />
-            </ul>
-            <button className="NewBtn">New Project</button>
+        <nav className="navbar navbar-dark bg-dark">
+            <Link className="navbar-brand" to="/projects"><img src={logo} style={{ width: '50px', height: '50px' }} alt="Logo" /></Link>
+            <p className="navbar-text"><b>Project Management App</b></p>
+            <button className="btn btn-primary navbar-toggler">New Project</button>
         </nav>
     )
 }

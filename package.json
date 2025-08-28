@@ -1,7 +1,7 @@
 {
   "name": "project-management-app",
   "version": "0.1.0",
-  "proxy": "https://localhost:7148",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -8,8 +8,6 @@ export default function ProjectDetail(){
     
     const { projectCode } = useParams();
 
-    // console.log("Project code from URL:", projectCode);
-
     const [project, setProject] = useState();
     const [editMode, setEditMode] = useState(false);
 
@@ -44,9 +42,9 @@ export default function ProjectDetail(){
                 <div>
                     <button onClick={() => setEditMode(true)}>Edit Project</button>
                 </div>
-                {/* Edit form modal */}
+
                 {editMode && (
-                    <EditProjectForm project={project} onClose={() => setEditMode(false)} />
+                    <EditProjectForm project={project} onClose={() => setEditMode(false)} /> 
                 )}
         </div>
     )

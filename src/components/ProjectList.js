@@ -39,6 +39,7 @@ export default function ProjectList() {
         };
 
         fetchProjects();
+        setIsLoading(true);
     }, []);
 
     return (

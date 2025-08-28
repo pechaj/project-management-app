@@ -8,3 +8,11 @@ Simple web application, used to manage projects with their corresponding tasks. 
 **Database** - Azure Cosmos DB
 
 **Frontend** - React
+
+## How to run
+- Make sure the project and task service are running, so the endpoints are exposed.
+```
+# Make sure you are in correct folder
+dapr run -- dotnet run
+```
+- Running ProjectActor service.

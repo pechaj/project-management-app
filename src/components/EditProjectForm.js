@@ -2,7 +2,7 @@ import Dialog from '@mui/material/Dialog';
 import axios from 'axios';
 import { useState } from "react";
 
-const EditProjectForm = ({ project }) => {
+const EditProjectForm = ({ project, onClose }) => {
     const [open, setOpen] = useState(true);
     const [name, setName] = useState(project.name);
     const [notes, setNotes] = useState(project.notes);
@@ -11,6 +11,7 @@ const EditProjectForm = ({ project }) => {
 
     const handleClose = () => {
         setOpen(false);
+        onClose();
     };
 
     const handleNameChange = (event) => {
@@ -45,27 +46,30 @@ const EditProjectForm = ({ project }) => {
 
     return (
         <>
-            <Dialog open={open} onClose={handleClose}>
-                <form onSubmit={handleSubmit} id="edit-project-form">
-                    <h3>Project editation form</h3>
-                    <div>
-                        <label htmlFor="code">Code</label>
-                        <input type="text" id="code" name="code" value={project.code} disabled />
+            <Dialog open={open} onClose={handleClose} >
+                <form className="modal-body" style={{ padding: '20px', width: '500px' }} onSubmit={handleSubmit} id="edit-project-form">
+                    <div className="modal-header">
+                        <h5 className='modal-title'>Project editation form</h5>
+                        <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"></button>
                     </div>
-                    <div>
-                        <label htmlFor="name">Name</label>
-                        <input type="text" id="name" name="name" value={name} onChange={handleNameChange} />
+                    <div className='m-3'>
+                        <label htmlFor="code" className='form-label'>Code</label>
+                        <input type="text" id="code" name="code" className='form-control' value={project.code} disabled />
                     </div>
-                    <div>
-                        <label htmlFor="notes">Notes</label>
-                        <textarea id="notes" name="notes" value={notes} onChange={handleNotesChange} />
+                    <div className='m-3'>
+                        <label htmlFor="name" className='form-label'>Name</label>
+                        <input type="text" id="name" name="name" className='form-control' value={name} onChange={handleNameChange} />
                     </div>
-                    <div>
-                        <label htmlFor="deleted">Deleted</label>
-                        <input type="checkbox" id="deleted" name="deleted" checked={project.deleted} disabled />
+                    <div className='m-3'>
+                        <label htmlFor="notes" className='form-label'>Notes</label>
+                        <textarea id="notes" name="notes" className='form-control' value={notes} onChange={handleNotesChange} />
+                    </div>
+                    <div className='m-3'>
+                        <label htmlFor="deleted" className='form-label'>Deleted</label>
+                        <input type="checkbox" id="deleted" name="deleted" className='form-check-input' checked={project.deleted} disabled />
                     </div>
 
-                    <button type="submit">Save</button>
+                    <button type="submit" className='btn btn-primary'>Save</button>
                 </form>
             </Dialog>
         </>

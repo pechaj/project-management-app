@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -6,11 +6,13 @@ import axios from "axios";
 export default function TaskDetail() {
     const { taskCode } = useParams();
 
+    const projectId = useLocation().state?.projectId;
+
     const [task, setTask] = useState();
 
     useEffect(() => {
         const fetchTask = async () => {
-            await axios.get(`/api/Tasks/${taskCode}`)
+            await axios.get(`http://localhost:5295/api/Tasks/${taskCode}?projectId=${projectId}`)
                 .then(response => {
                     console.log(response.data);
                     setTask(response.data);
@@ -20,7 +22,7 @@ export default function TaskDetail() {
         };
 
         fetchTask();
-    }, [taskCode]);
+    }, [taskCode, projectId]);
 
     if (task === undefined) {
         return (<div className="loader"></div>);

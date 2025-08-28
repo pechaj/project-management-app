@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../App.css";
 
 import ProjectBlock from "./ProjectBlock";
 
 export default function ProjectList() {
     const [projects, setProjects] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Sample project data
     /*const projects = [{
@@ -28,10 +30,12 @@ export default function ProjectList() {
 
     // Pouzity proxy localhost:7148, kvuli CORS
     useEffect(() => {
+        setIsLoading(true);
         const fetchProjects = async () => {
-        const result = await axios(`/api/Projects`);
+        const result = await axios.get(`/api/Projects`);
         
         setProjects(result.data);
+        setIsLoading(false);
         };
 
         fetchProjects();
@@ -40,12 +44,12 @@ export default function ProjectList() {
     return (
         <>
             <div className="ProjectList">
-                {projects.length > 0 ? (
-                projects.map(project => (
-                    <ProjectBlock key={project.code} project={project} />
-                ))
+                {isLoading ? (
+                <div className="loader"></div>
                 ) : (
-                <p className='no-projects'>No Projects found</p>
+                    projects.map(project => (
+                        <ProjectBlock key={project.code} project={project} />
+                    ))
                 )}
             </div>
         </>

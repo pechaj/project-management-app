@@ -1,5 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { EditTaskForm } from "./EditTaskForm";
 import axios from "axios";
 
 
@@ -8,6 +9,7 @@ export default function TaskDetail() {
 
     const projectId = useLocation().state?.projectId;
 
+    const [editMode, setEditMode] = useState(false);
     const [task, setTask] = useState();
 
     useEffect(() => {
@@ -32,11 +34,19 @@ export default function TaskDetail() {
         <div className="TaskDetail">
             <h2>{task.code}</h2>
             <p><b>Assigned to:</b> {task.projectId ?? "Unassigned"}</p>
-            <p><b>Notes: </b>{task.descriptions}</p>
+            <p><b>Notes: </b>{task.description}</p>
             <p><b>Deleted?</b> {task.deleted ? "Yes" : "No"}</p>
-            <p><b>Deadline:</b> {task.deadline}</p>
+            <p><b>Deadline:</b> {task.deadLine}</p>
             <p><b>Urgency:</b> {task.urgency}</p>
             <p><b>Place:</b> {task.place}</p>
+
+            <div>
+                <button onClick={() => setEditMode(true)}>Edit Task</button>
+            </div>
+
+            {editMode && (
+                <EditTaskForm task={task} onClose={() => setEditMode(false)} /> 
+            )}
         </div>
         )
 }

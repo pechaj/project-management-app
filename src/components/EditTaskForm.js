@@ -30,10 +30,13 @@ const EditTaskForm = ({ task, onClose }) => {
         alert("Update request is being sent...");
 
         const updatedTask = {
-            "description" : form.description,
-            "deadline" : form.deadline,
-            "urgency" : form.urgency,
-            "place" : form.place
+            "code" : task.code,
+            "projectId" : task.projectId,
+            "description" : form?.description ?? "",
+            "deadline" : form?.deadline ?? "",
+            "urgency" : form?.urgency ?? "",
+            "place" : form?.place ?? "",
+            "deleted" : task.deleted
         };
 
         await axios.put(`http://localhost:5295/api/Tasks/${task.code}`, updatedTask).then(response => {
@@ -47,7 +50,7 @@ const EditTaskForm = ({ task, onClose }) => {
 
     return (
         <>
-            <Dialog open={open} onClose={handleClose} >
+            <Dialog open={open} onClose={handleClose}>
                 <form className="modal-body" style={{ padding: '20px', width: '500px' }} onSubmit={handleSubmit} id="edit-task-form">
                     <div className="modal-header">
                         <h5 className='modal-title'>Task editing form</h5>
@@ -59,23 +62,23 @@ const EditTaskForm = ({ task, onClose }) => {
                     </div>
                     <div className='m-3'>
                         <label htmlFor="description" className='form-label'>Description</label>
-                        <input type="text" id="description" name="description" className='form-control' value={form.description} onChange={handleChange} />
+                        <input type="text" id="description" name="description" className='form-control' value={form?.description ?? ""} onChange={handleChange} />
                     </div>
                     <div className='m-3'>
                         <label htmlFor="deadline" className='form-label'>Deadline</label>
-                        <input type="date" id="deadline" name="deadline" className='form-control' value={form.deadline} onChange={handleChange} />
+                        <input type="date" id="deadline" name="deadline" className='form-control' value={form?.deadline ?? ""} onChange={handleChange} />
                     </div>
                     <div className='m-3'>
                         <label htmlFor="urgency" className='form-label'>Urgency</label>
-                        <input type="text" id="urgency" name="urgency" className='form-control' value={form.urgency} onChange={handleChange} />
+                        <input type="text" id="urgency" name="urgency" className='form-control' value={form?.urgency ?? ""} onChange={handleChange} />
                     </div>
                     <div className='m-3'>
                         <label htmlFor="place" className='form-label'>Place</label>
-                        <input type="text" id="place" name="place" className='form-control' value={form.place} onChange={handleChange} />
+                        <input type="text" id="place" name="place" className='form-control' value={form?.place ?? ""} onChange={handleChange} />
                     </div>
                     <div className='m-3'>
                         <label htmlFor="deleted" className='form-label'>Deleted</label>
-                        <input type="checkbox" id="deleted" name="deleted" className='form-check-input' checked={form.deleted} disabled />
+                        <input type="checkbox" id="deleted" name="deleted" className='form-check-input' checked={task.deleted} disabled />
                     </div>
 
                     <button type="submit" className='btn btn-primary'>Save</button>
@@ -85,4 +88,4 @@ const EditTaskForm = ({ task, onClose }) => {
     )
 }
 
-export { EditProjectForm };
+export { EditTaskForm };

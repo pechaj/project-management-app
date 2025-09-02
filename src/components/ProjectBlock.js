@@ -48,6 +48,11 @@ export default function ProjectBlock({ project }) {
                 {(project?.tasks ?? []).map(task => (
                     <TaskRow key={task} taskCode={task} projectId={project.code} />
                 ))}
+                <div>
+                    <Link className="btn btn-success" to={`/tasks/new`} state={{ projectId : project?.code }}>
+                        +
+                    </Link>
+                </div>
             </div>
         </div>
     )

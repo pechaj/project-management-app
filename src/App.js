@@ -7,6 +7,7 @@ import {
 import ProjectList from './components/ProjectList';
 import ProjectDetail from './components/ProjectDetail';
 import TaskDetail from './components/TaskDetail';
+import NewProjectForm from './components/NewProjectForm';
 import Navbar from './components/Navbar';
 
 
@@ -31,6 +32,10 @@ function App() {
           <Route
             path="/tasks/:taskCode"
             element={<TaskDetail />}
+          />
+          <Route
+            path="/projects/new"
+            element={<NewProjectForm />}
           />
         </Routes>
       </BrowserRouter>

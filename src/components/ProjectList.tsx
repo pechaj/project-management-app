@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from 'react-aria-components';
 import "../App.css";
@@ -19,7 +18,6 @@ const getProjects = async () => {
 }
 
 export default function ProjectList() {
-    const [projects, setProjects] = useState<Array<Project>>([]);
 
     // Pouzity proxy localhost:7148, kvuli CORS
     const { isPending, isError, data, error, refetch } = useQuery({
@@ -41,12 +39,12 @@ export default function ProjectList() {
     )
 
     return (
-        <>
+        <div className="container">
             <Button className="btn btn-secondary" onPress={() => refetch()}>Refetch</Button>
             {data.data.map(project => (
                 <ProjectBlock key={project.code} project={project} />
             )
             )}
-        </>
+        </div>
     );
 }

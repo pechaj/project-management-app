@@ -13,6 +13,7 @@ export function TaskRow({ taskCode, projectId }) {
 }
 
 export default function ProjectBlock({ project }) {
+    const { code, description, tasks, deleted } = project;
 
     const [projectInfo, setProjectInfo] = useState(project);
 
@@ -45,7 +46,7 @@ export default function ProjectBlock({ project }) {
             </div>
 
             <div className="TaskList list-group list-group-flush p-3">
-                {(project?.tasks ?? []).map(task => (
+                {project?.tasks?.map(task => (
                     <TaskRow key={task} taskCode={task} projectId={project.code} />
                 ))}
                 <div>

@@ -11,8 +11,6 @@ import NewProjectForm from './components/NewProjectForm';
 import Navbar from './components/Navbar';
 import NewTaskForm from './components/NewTaskForm';
 
-
-
 // const APIUrl = "https://localhost:7148/api/";
 
 function App() {

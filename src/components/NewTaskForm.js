@@ -27,7 +27,6 @@ export default function NewTaskForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setSent(false);
 
         alert("Update request is being sent...");
 

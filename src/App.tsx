@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import ProjectList from './components/ProjectList';
+import ProjectList from './components/ProjectList.tsx';
 import ProjectDetail from './components/ProjectDetail';
 import TaskDetail from './components/TaskDetail';
 import NewProjectForm from './components/NewProjectForm';

@@ -9,6 +9,7 @@ import ProjectDetail from './components/ProjectDetail';
 import TaskDetail from './components/TaskDetail';
 import NewProjectForm from './components/NewProjectForm';
 import Navbar from './components/Navbar';
+import NewTaskForm from './components/NewTaskForm';
 
 
 
@@ -36,6 +37,10 @@ function App() {
           <Route
             path="/projects/new"
             element={<NewProjectForm />}
+          />
+          <Route
+            path="/tasks/new"
+            element={<NewTaskForm />}
           />
         </Routes>
       </BrowserRouter>

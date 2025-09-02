@@ -21,6 +21,7 @@ export default function NewProjectForm() {
         
     const handleSubmit = (event) => {
         event.preventDefault();
+        setSent(false);
 
         alert("Update request is being sent...");
 
@@ -55,13 +56,13 @@ export default function NewProjectForm() {
             <div className='modal-title'>Project added successfully!</div>
         </Dialog> : (
             <div className='container mx-auto'>
-                <form className="m-5" onSubmit={handleSubmit} id="edit-project-form">
+                <form className="m-5" onSubmit={handleSubmit} id="new-project-form">
                         <div className="form-group">
-                            <h5 className=''>Project editation form</h5>
+                            <h5 className=''>New project form</h5>
                         </div>
                         <div className='m-3'>
                             <label htmlFor="code" className='form-label'>Code</label>
-                            <input type="text" id="code" name="code" className='form-control' value={form.code} onChange={handleChange} />
+                            <input type="text" id="code" name="code" className='form-control' value={form.code} onChange={handleChange} required/>
                         </div>
                         <div className='m-3'>
                             <label htmlFor="name" className='form-label'>Name</label>

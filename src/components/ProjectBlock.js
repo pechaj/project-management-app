@@ -49,7 +49,7 @@ export default function ProjectBlock({ project }) {
                     <TaskRow key={task} taskCode={task} projectId={project.code} />
                 ))}
                 <div>
-                    <Link className="btn btn-success" to={`/tasks/new`} state={{ projectId : project?.code }}>
+                    <Link className="btn btn-success" to={`/tasks/new`} state={{ projectCode : project?.code }}>
                         +
                     </Link>
                 </div>

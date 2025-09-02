@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { TaskRow } from "./ProjectBlock";
+import { TaskRow } from "./ProjectBlock.tsx";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { EditProjectForm } from "./EditProjectForm";
 
-export default function ProjectDetail(){
-    
+export default function ProjectDetail() {
+
     const { projectCode } = useParams();
 
     const [project, setProject] = useState();
@@ -32,20 +32,20 @@ export default function ProjectDetail(){
     return (
         <div className="ProjectDetail">
             <h2>{project.name}</h2>
-                <p><b>Notes: </b>{project.notes}</p>
-                <p><b>Deleted?</b> {project.deleted ? "Yes" : "No"}</p>
-                <div className="TaskList">
-                    {(project?.tasks ?? []).map(task => (
-                        <TaskRow key={task} taskCode={task} />
-                    ))}
-                </div>
-                <div>
-                    <button onClick={() => setEditMode(true)}>Edit Project</button>
-                </div>
+            <p><b>Notes: </b>{project.notes}</p>
+            <p><b>Deleted?</b> {project.deleted ? "Yes" : "No"}</p>
+            <div className="TaskList">
+                {(project?.tasks ?? []).map(task => (
+                    <TaskRow key={task} taskCode={task} />
+                ))}
+            </div>
+            <div>
+                <button onClick={() => setEditMode(true)}>Edit Project</button>
+            </div>
 
-                {editMode && (
-                    <EditProjectForm project={project} onClose={() => setEditMode(false)} /> 
-                )}
+            {editMode && (
+                <EditProjectForm project={project} onClose={() => setEditMode(false)} />
+            )}
         </div>
     )
 }

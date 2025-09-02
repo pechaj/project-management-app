@@ -8,7 +8,7 @@ import ProjectList from './components/ProjectList.tsx';
 import ProjectDetail from './components/ProjectDetail';
 import TaskDetail from './components/TaskDetail';
 import NewProjectForm from './components/NewProjectForm';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.tsx';
 import NewTaskForm from './components/NewTaskForm';
 
 // const APIUrl = "https://localhost:7148/api/";

@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from 'react-aria-components';
 import "../App.css";
 import axios from "axios";
-
-import ProjectBlock from "./ProjectBlock";
+import ProjectBlock from "./ProjectBlock.tsx";
 
 interface Project {
     code: string;

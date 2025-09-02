@@ -1,7 +1,5 @@
 import { Button, ProgressBar } from "react-aria-components";
 
-
-
 function DeleteButton({ isFetching, deleted, refetch }: { isFetching: boolean, deleted: boolean, refetch: Function }) {
 
     return (

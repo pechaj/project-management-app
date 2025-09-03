@@ -9,6 +9,7 @@ export interface project {
     name: string;
     notes: string;
     deleted: boolean;
+    tasks: string[];
 }
 
 const getProjects = async () => {

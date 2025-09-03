@@ -22,7 +22,7 @@ const deleteProject = async (projectCode: string, deleted: boolean) => {
 function ProjectHeader({ project }: { project: project }) {
 
     const { code, name, deleted } = project;
-
+    // TODO: change to useMutation
     const { isFetching, isError, refetch } = useQuery({
         queryKey: ["delete-project", code],
         queryFn: () => deleteProject(code, deleted),

@@ -4,9 +4,8 @@ import ProjectHeader from "./ProjectHeader.tsx";
 import { TaskBlock } from "./TaskBlock.tsx";
 import axios from "axios";
 
-
-
 export default function ProjectBlock({ project }) {
+
     const { code, name, tasks, deleted } = project;
 
     // console.log("Rendering ProjectBlock for project:", project);

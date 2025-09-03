@@ -12,7 +12,7 @@ export default function ProjectBlock({ project }) {
     // console.log("Rendering ProjectBlock for project:", project);
     return (
         <div className={"ProjectCard card" + (deleted ? " deleted" : "")}>
-            <ProjectHeader projectCode={code} projectName={name} deleted={deleted} />
+            <ProjectHeader project={project} />
             <TaskBlock tasks={tasks} code={code} />
         </div>
     )

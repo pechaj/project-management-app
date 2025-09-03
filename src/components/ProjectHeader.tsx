@@ -19,18 +19,20 @@ const deleteProject = async (projectCode: string, deleted: boolean) => {
     return true;
 }
 
-function ProjectHeader({ projectCode, projectName, deleted, project }: { projectCode: string, projectName: string, deleted: boolean, project: project }) {
+function ProjectHeader({ project }: { project: project }) {
+
+    const { code, name, deleted } = project;
 
     const { isFetching, isError, refetch } = useQuery({
-        queryKey: ["delete-project", projectCode],
-        queryFn: () => deleteProject(projectCode, deleted),
+        queryKey: ["delete-project", code],
+        queryFn: () => deleteProject(code, deleted),
         enabled: false,
     });
 
     return (
         <div className="row">
             <Link className="col-11 h4 link-offset-2 link-underline link-underline-opacity-0"
-                to={`/projects/${projectCode}`} state={{ project: project }}>{projectName} ({projectCode})</Link>
+                to={`/projects/${code}`} state={{ project: project }}>{name} ({code})</Link>
 
             <DeleteButton isFetching={isFetching} deleted={deleted} refetch={refetch} />
         </div>

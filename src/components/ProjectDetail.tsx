@@ -8,7 +8,7 @@ export default function ProjectDetail(props) {
 
     const project = useLocation().state.project;
 
-    const [name, notes, deleted, tasks] = useLocation().state.project;
+    const [code, name, notes, deleted, tasks] = useLocation().state.project;
 
     const [editMode, setEditMode] = useState(false);
 
@@ -19,7 +19,7 @@ export default function ProjectDetail(props) {
             <p><b>Deleted?</b> {deleted ? "Yes" : "No"}</p>
             <div className="TaskList">
                 {tasks?.map(task => (
-                    <TaskItem key={task} taskCode={task} />
+                    <TaskItem key={task} taskCode={task} projectId={code} />
                 ))}
             </div>
             <div>

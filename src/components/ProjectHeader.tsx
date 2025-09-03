@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import DeleteButton from "./DeleteButton.tsx";
+import { project } from "./ProjectList.tsx";
 
 const deleteProject = async (projectCode: string, deleted: boolean) => {
     await axios.delete(`/api/Projects/${projectCode}/delete`).then(response => {
@@ -18,7 +19,7 @@ const deleteProject = async (projectCode: string, deleted: boolean) => {
     return true;
 }
 
-function ProjectHeader({ projectCode, projectName, deleted }: { projectCode: string, projectName: string, deleted: boolean }) {
+function ProjectHeader({ projectCode, projectName, deleted, project }: { projectCode: string, projectName: string, deleted: boolean, project: project }) {
 
     const { isFetching, isError, refetch } = useQuery({
         queryKey: ["delete-project", projectCode],
@@ -29,7 +30,7 @@ function ProjectHeader({ projectCode, projectName, deleted }: { projectCode: str
     return (
         <div className="row">
             <Link className="col-11 h4 link-offset-2 link-underline link-underline-opacity-0"
-                to={`/projects/${projectCode}`}>{projectName} ({projectCode})</Link>
+                to={`/projects/${projectCode}`} state={{ project: project }}>{projectName} ({projectCode})</Link>
 
             <DeleteButton isFetching={isFetching} deleted={deleted} refetch={refetch} />
         </div>

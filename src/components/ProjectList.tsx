@@ -4,7 +4,7 @@ import "../App.css";
 import axios from "axios";
 import ProjectBlock from "./ProjectBlock.tsx";
 
-interface Project {
+export interface project {
     code: string;
     name: string;
     notes: string;

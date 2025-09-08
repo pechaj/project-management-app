@@ -4,14 +4,6 @@ import "../App.css";
 import axios from "axios";
 import ProjectBlock from "./ProjectBlock.tsx";
 
-export interface project {
-    code: string;
-    name: string;
-    notes: string;
-    deleted: boolean;
-    tasks: string[];
-}
-
 const getProjects = async () => {
     const response = await axios.get("/api/Projects");
     return response;

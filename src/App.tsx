@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import ProjectList from './components/ProjectList.tsx';
 import ProjectDetail from './components/ProjectDetail.tsx';
-import TaskDetail from './components/TaskDetail';
+import TaskDetail from './components/TaskDetail.tsx';
 import NewProjectForm from './components/NewProjectForm';
 import Navbar from './components/Navbar.tsx';
 import NewTaskForm from './components/NewTaskForm';

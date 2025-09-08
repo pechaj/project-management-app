@@ -1,11 +1,11 @@
 import { TextField, Label, Input, Button, Heading, TextArea, Checkbox, Form, ProgressBar } from "react-aria-components";
 import { ModalHeader } from './ModalHeader.tsx';
 import { useState } from "react";
-import { project } from "./ProjectList.tsx";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import Project from "../shared/interfaces/IProject.tsx";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-export function EditProjectForm({ project }: { project: project }) {
+export function EditProjectForm({ project }: { project: Project }) {
 
     const [name, setName] = useState(project.name);
 

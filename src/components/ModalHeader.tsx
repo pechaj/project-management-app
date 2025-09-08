@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Button } from "react-aria-components";
+import { Button, Heading } from "react-aria-components";
 
-export function ModalHeader({ title, handleClose }: { title: string, open: boolean, handleClose }) {
+export function ModalHeader({ title }: { title: string }) {
 
     return (
-        <div className="modal-header">
-            <h5 className='modal-title'>{title}</h5>
-            <Button type="button" className="btn-close" onPress={handleClose} aria-label="Close" />
+        <div className="modal-header mt-2">
+            <Heading slot="title" className='modal-title'>{title}</Heading>
+            <Button slot="close" className="btn-close" aria-label="Close" />
         </div>
     )
 }

@@ -12,8 +12,6 @@ export default function ProjectDetail() {
 
     const { code, name, notes, deleted, tasks } = useLocation().state.project;
 
-    const [editMode, setEditMode] = useState(false);
-
     return (
         <div className="container">
             <h2>{name}</h2>
@@ -23,10 +21,10 @@ export default function ProjectDetail() {
                 <TaskBlock tasks={tasks} code={code} />
             </div>
             <DialogTrigger>
-                {/* TODO: rework this section, very buggy, get rid of onClose?*/}
+                {/* TODO: rework this section*/}
                 <Button className="btn btn-secondary">Edit Project</Button>
-                <Modal className="text-center py-2">
-                    <EditProjectModal project={project} onClose={() => setEditMode(false)} />
+                <Modal isDismissable>
+                    <EditProjectModal project={project} />
                 </Modal>
             </DialogTrigger>
 

@@ -1,11 +1,11 @@
-import { TextField, Label, Input, Button, TextArea, Checkbox, Form, ProgressBar } from "react-aria-components";
+import { TextField, Label, Input, Button, Heading, TextArea, Checkbox, Form, ProgressBar } from "react-aria-components";
 import { ModalHeader } from './ModalHeader.tsx';
 import { useState } from "react";
 import { project } from "./ProjectList.tsx";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export function EditProjectForm({ project, open, handleClose }: { project: project, open: boolean, handleClose }) {
+export function EditProjectForm({ project }: { project: project }) {
 
     const [name, setName] = useState(project.name);
 
@@ -40,8 +40,6 @@ export function EditProjectForm({ project, open, handleClose }: { project: proje
         event.preventDefault();
 
         await putMutation.mutateAsync();
-
-        handleClose();
     }
 
     if (putMutation.isPending) return (
@@ -59,13 +57,13 @@ export function EditProjectForm({ project, open, handleClose }: { project: proje
 
     return (
         <Form className="modal-body" style={{ padding: '20px', width: '500px' }} onSubmit={handleSubmit} id="edit-project-form">
-            <ModalHeader title='Project editation form' open={open} handleClose={handleClose} />
+            <ModalHeader title='Project editation form' />
             <ProjectCodeInput code={project.code} />
             <ProjectNameInput name={name} handleNameChange={handleNameChange} />
             <ProjectNotesInput notes={notes} handleNotesChange={handleNotesChange} />
             <ProjectDeletedInput deleted={project.deleted} />
 
-            <button type="submit" className='btn btn-primary'>Save</button>
+            <Button type="submit" className='btn btn-primary'>Save</Button>
         </Form>
     )
 }

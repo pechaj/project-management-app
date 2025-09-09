@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    // Language and Environment
+    "target": "esnext",
+    "lib": ["DOM", "DOM.Iterable", "ES2024"],
+    "jsx": "react-jsx",
+    "moduleDetection": "auto",
+    "useDefineForClassFields": true,
+    "libReplacement": false,
+    // Modules
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true,
+    // Emit
+    "noEmit": true,
+    // Interop Constraints
+    "erasableSyntaxOnly": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    // Type Checking
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    // Completeness
+    "skipLibCheck": true,
+    // Projects
+    "incremental": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"],
+      "@api/*": ["api/*"],
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@ui": ["components/ui"],
+      "@ui/*": ["components/ui/*"],
+      "@features/*": ["features/*"],
+      "@hooks/*": ["hooks/*"],
+      "@layouts/*": ["layouts/*"],
+      "@pages/*": ["pages/*"],
+      "@routes/*": ["routes/*"],
+      "@store/*": ["store/*"],
+      "@project-types/*": ["project-types/*"],
+      "@utils/*": ["utils/*"]
+    },
+    "typeRoots": ["./src/project-types"]
+  },
+  "include": ["src"]
+}

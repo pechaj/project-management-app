@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 
-export function NewTaskButton({ code }) {
-    return (
-
-        <Link className="col text-center fs-5 fw-bold list-group-item m-2" to={`/tasks/new`} state={{ projectCode: code }}>
-            +
-        </Link>
-    )
+export function NewTaskButton({ code }: { code: string }) {
+  return (
+    <Link className="col fs-5 fw-bold m-2 list-group-item text-center" state={{ projectCode: code }} to={"/tasks/new"}>
+      +
+    </Link>
+  );
 }

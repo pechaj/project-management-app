@@ -1,110 +1,123 @@
-import { TextField, Label, Input, Button, Heading, TextArea, Checkbox, Form, ProgressBar } from "react-aria-components";
-import { ModalHeader } from './ModalHeader.tsx';
 import { useState } from "react";
-import Project from "../shared/interfaces/IProject.tsx";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { Button, Checkbox, Form, Input, Label, ProgressBar, TextArea, TextField } from "react-aria-components";
+import type { project } from "@/project-types/project.tsx";
+import { ModalHeader } from "./ModalHeader.tsx";
 
-export function EditProjectForm({ project }: { project: Project }) {
+export function EditProjectForm({ object }: { object: project }) {
+  const [name, setName] = useState(object.name);
 
-    const [name, setName] = useState(project.name);
+  const [notes, setNotes] = useState(object.notes);
 
-    const [notes, setNotes] = useState(project.notes);
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
+  const handleNotesChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNotes(event.target.value);
+  };
+
+  const handlePut = async () => {
+    const updatedProject = {
+      code: object.code,
+      name,
+      notes,
+      deleted: object.deleted,
+      tasks: object.tasks,
     };
 
-    const handleNotesChange = (event) => {
-        setNotes(event.target.value);
-    };
+    await axios.put(`/api/Projects/${object.code}`, updatedProject);
+  };
 
-    const handlePut = async () => {
+  const putMutation = useMutation({
+    mutationFn: handlePut,
+  });
 
-        const updatedProject = {
-            "code": project.code,
-            "name": name,
-            "notes": notes,
-            "deleted": project.deleted,
-            "tasks": project.tasks,
-        };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-        await axios.put(`/api/Projects/${project.code}`, updatedProject);
-    }
+    await putMutation.mutateAsync();
+  };
 
-    const putMutation = useMutation({
-        mutationFn: handlePut,
-    });
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        await putMutation.mutateAsync();
-    }
-
-    if (putMutation.isPending) return (
-        <div className="m-3">
-            <Label className="fs-2">Saving...</Label>
-            <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
-        </div>
+  if (putMutation.isPending) {
+    return (
+      <div className="m-3">
+        <Label className="fs-2">Saving...</Label>
+        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+      </div>
     );
+  }
 
-    if (putMutation.isError) return (
-        <>
-            <Label>There was a problem saving the project: {putMutation.error.message}</Label>
-        </>
-    )
+  if (putMutation.isError) {
+    return <Label>There was a problem saving the project: {putMutation.error.message}</Label>;
+  }
 
-    return (
-        <Form className="modal-body" style={{ padding: '20px', width: '500px' }} onSubmit={handleSubmit} id="edit-project-form">
-            <ModalHeader title='Project editation form' />
-            <ProjectCodeInput code={project.code} />
-            <ProjectNameInput name={name} handleNameChange={handleNameChange} />
-            <ProjectNotesInput notes={notes} handleNotesChange={handleNotesChange} />
-            <ProjectDeletedInput deleted={project.deleted} />
+  return (
+    <Form
+      className="modal-body"
+      id="edit-project-form"
+      onSubmit={handleSubmit}
+      style={{ padding: "20px", width: "500px" }}
+    >
+      <ModalHeader title="Project editation form" />
+      <ProjectCodeInput code={object.code} />
+      <ProjectNameInput handleNameChange={handleNameChange} name={name} />
+      <ProjectNotesInput handleNotesChange={handleNotesChange} notes={notes} />
+      <ProjectDeletedInput deleted={object.deleted} />
 
-            <Button type="submit" className='btn btn-primary'>Save</Button>
-        </Form>
-    )
+      <Button className="btn btn-primary" type="submit">
+        Save
+      </Button>
+    </Form>
+  );
 }
 
-export function ProjectCodeInput({ code }) {
-
-    return (
-        <TextField type="text" className="m-3" isDisabled>
-            <Label className='form-label'>Code</Label>
-            <Input className='form-control' value={code} />
-        </TextField>
-    )
+export function ProjectCodeInput({ code }: { code: string }) {
+  return (
+    <TextField className="m-3" isDisabled type="text">
+      <Label className="form-label">Code</Label>
+      <Input className="form-control" value={code} />
+    </TextField>
+  );
 }
 
-export function ProjectNameInput({ name, handleNameChange }: { name: string, handleNameChange }) {
-
-    return (
-        <TextField type="text" className='m-3'>
-            <Label className='form-label'>Name</Label>
-            <Input className='form-control' value={name} onChange={handleNameChange} />
-        </TextField>
-    )
+export function ProjectNameInput({
+  name,
+  handleNameChange,
+}: {
+  name: string;
+  handleNameChange: React.ChangeEventHandler<HTMLInputElement>;
+}) {
+  return (
+    <TextField className="m-3" type="text">
+      <Label className="form-label">Name</Label>
+      <Input className="form-control" onChange={handleNameChange} value={name} />
+    </TextField>
+  );
 }
 
-export function ProjectNotesInput({ notes, handleNotesChange }: { notes: string, handleNotesChange }) {
-
-    return (
-        <TextField type="text" className='m-3'>
-            <Label className='form-label'>Notes</Label>
-            <TextArea className='form-control' value={notes} onChange={handleNotesChange} />
-        </TextField>
-    )
+export function ProjectNotesInput({
+  notes,
+  handleNotesChange,
+}: {
+  notes: string;
+  handleNotesChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+}) {
+  return (
+    <TextField className="m-3" type="text">
+      <Label className="form-label">Notes</Label>
+      <TextArea className="form-control" onChange={handleNotesChange} value={notes} />
+    </TextField>
+  );
 }
 
-export function ProjectDeletedInput({ deleted }) {
-
-    return (
-        <div className="m-3">
-            <Checkbox isSelected={deleted} isDisabled >
-                Deleted
-            </Checkbox>
-        </div>
-    )
+export function ProjectDeletedInput({ deleted }: { deleted: boolean }) {
+  return (
+    <div className="m-3">
+      <Checkbox isDisabled isSelected={deleted}>
+        Deleted
+      </Checkbox>
+    </div>
+  );
 }

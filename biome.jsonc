@@ -1,0 +1,73 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
+  "extends": ["ultracite"],
+  "linter": {
+    "rules": {
+      "complexity": {},
+      "suspicious": {
+        "noConsole": {
+          "level": "error",
+          "options": {
+            "allow": ["assert", "error", "info", "warn"]
+          }
+        }
+      }
+    }
+  },
+  "formatter": {
+    "lineWidth": 120
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": ["**", "!**/tsconfig.json", "!**/*.gen.ts"]
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [":URL:", ":BUN:", ":NODE:"],
+              ["react", "react/**"],
+              [
+                ":PACKAGE:",
+                ":PACKAGE_WITH_PROTOCOL:",
+                "!@api/**",
+                "!@assets/**",
+                "!@components/**",
+                "!@ui",
+                "!@ui/**",
+                "!@features/**",
+                "!@hooks/**",
+                "!@layouts/**",
+                "!@pages/**",
+                "!@routes/**",
+                "!@store/**",
+                "!@typings/**",
+                "!@utils/**"
+              ],
+              ["@ui", "@ui/**"],
+              [
+                ":ALIAS:",
+                "@api/**",
+                "@assets/**",
+                "@components/**",
+                "@features/**",
+                "@hooks/**",
+                "@layouts/**",
+                "@pages/**",
+                "@routes/**",
+                "@store/**",
+                "@typings/**",
+                "@utils/**"
+              ],
+              ":TYPE:",
+              ":PATH:"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

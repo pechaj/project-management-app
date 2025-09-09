@@ -1,18 +1,15 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import ProjectHeader from "./ProjectHeader.tsx";
-import { TaskBlock } from "./TaskBlock.tsx";
-import axios from "axios";
+import ProjectHeader from "@components/ProjectHeader";
+import { TaskBlock } from "@components/TaskBlock";
+import type { project } from "@/project-types/project";
 
-export default function ProjectBlock({ project }) {
+export default function ProjectBlock({ object }: { object: project }) {
+  const { code, tasks, deleted } = object;
 
-    const { code, name, tasks, deleted } = project;
-
-    // console.log("Rendering ProjectBlock for project:", project);
-    return (
-        <div className={"ProjectCard card" + (deleted ? " deleted" : "")}>
-            <ProjectHeader project={project} />
-            <TaskBlock tasks={tasks} code={code} />
-        </div>
-    )
+  // console.log("Rendering ProjectBlock for project:", project);
+  return (
+    <div className={`ProjectCard card ${deleted ? "deleted" : ""}`}>
+      <ProjectHeader object={object} />
+      <TaskBlock code={code} tasks={tasks} />
+    </div>
+  );
 }

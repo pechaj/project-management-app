@@ -1,45 +1,25 @@
-import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import ProjectList from './components/ProjectList.tsx';
-import ProjectDetail from './components/ProjectDetail.tsx';
-import TaskDetail from './components/TaskDetail.tsx';
-import NewProjectForm from './components/NewProjectForm';
-import Navbar from './components/Navbar.tsx';
-import NewTaskForm from './components/NewTaskForm';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "@assets/styles.module.css";
+import Navbar from "@components/Navbar";
+import NewProjectForm from "@components/NewProjectForm";
+import NewTaskForm from "@components/NewTaskForm";
+import ProjectDetail from "@components/ProjectDetail.tsx";
+import ProjectList from "@components/ProjectList.tsx";
+import TaskDetail from "@components/TaskDetail.tsx";
 
 // const APIUrl = "https://localhost:7148/api/";
 
 function App() {
-
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route
-            path="/projects"
-            element={<ProjectList />}
-          />
-          <Route
-            path="/projects/:projectCode"
-            element={<ProjectDetail />}
-          />
-          <Route
-            path="/tasks/:taskCode"
-            element={<TaskDetail />}
-          />
-          <Route
-            path="/projects/new"
-            element={<NewProjectForm />}
-          />
-          <Route
-            path="/tasks/new"
-            element={<NewTaskForm />}
-          />
+          <Route element={<ProjectList />} path="/projects" />
+          <Route element={<ProjectDetail />} path="/projects/:projectCode" />
+          <Route element={<TaskDetail />} path="/tasks/:taskCode" />
+          <Route element={<NewProjectForm />} path="/projects/new" />
+          <Route element={<NewTaskForm />} path="/tasks/new" />
         </Routes>
       </BrowserRouter>
     </div>

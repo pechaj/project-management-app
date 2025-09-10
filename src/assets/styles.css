@@ -1,3 +1,9 @@
+:root {
+  --primary: #363537;
+  --secondary: #dced31;
+  --tertiary: #0cce6b;
+}
+
 .App1 {
   text-align: center;
 }
@@ -7,8 +13,12 @@
   pointer-events: none;
 }
 
+.navbar-primary {
+  background-color: var(--primary);
+}
+
 .NewBtn {
-  background-color: #61dafb;
+  background-color: var(--secondary);
   border: none;
   border-radius: 5px;
   color: black;
@@ -94,4 +104,12 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.react-aria-ListBoxItem:hover {
+  background-color: aquamarine;
+}
+.react-aria-ListBoxItem[data-selected] {
+  background-color: rgb(150, 206, 20);
+  border-radius: 2px;
 }

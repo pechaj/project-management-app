@@ -3,7 +3,7 @@ import logo from "@assets/logo.svg";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-dark bg-dark">
+    <nav className="navbar navbar-dark navbar-primary">
       <Link className="navbar-brand" to="/projects">
         <span
           aria-label="Logo"
@@ -23,7 +23,7 @@ function Navbar() {
       <p className="navbar-text">
         <b>Project Management App</b>
       </p>
-      <Link className="btn btn-primary navbar-toggler" to="/projects/new">
+      <Link className="btn NewBtn" to="/projects/new">
         New Project
       </Link>
     </nav>

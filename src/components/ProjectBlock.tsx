@@ -1,3 +1,4 @@
+import "@assets/styles.css";
 import ProjectHeader from "@components/ProjectHeader";
 import { TaskBlock } from "@components/TaskBlock";
 import type { project } from "@/project-types/project";

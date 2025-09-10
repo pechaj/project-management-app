@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "@assets/styles.module.css";
+import "@assets/styles.css";
 import Navbar from "@components/Navbar";
 import NewProjectForm from "@components/NewProjectForm";
 import NewTaskForm from "@components/NewTaskForm";

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "react-aria-components";
-import "@assets/styles.module.css";
+import "@assets/styles.css";
 import type { project } from "@project-types/project.tsx";
 import axios from "axios";
 import ProjectBlock from "@components/ProjectBlock.tsx";

@@ -93,6 +93,10 @@ export function EditTaskForm({ object }: { object: task }) {
     return <Label>There was a problem saving the project: {putMutation.error.message}</Label>;
   }
 
+  if (putMutation.isSuccess) {
+    return <Label>Task was successfully updated.</Label>;
+  }
+
   return (
     <Form
       className="modal-body"
@@ -136,7 +140,11 @@ export function TaskDeadlineInput({
   if (deadline === undefined) {
     safeDeadline = today(getLocalTimeZone());
   } else {
-    safeDeadline = parseDate(deadline);
+    try {
+      safeDeadline = parseDate(deadline);
+    } catch (ex) {
+      safeDeadline = today(getLocalTimeZone());
+    }
   }
 
   return (

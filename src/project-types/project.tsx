@@ -3,5 +3,5 @@ export type project = {
   name: string;
   notes: string;
   deleted: boolean;
-  tasks: string[];
+  tasks: Record<string, string>;
 };

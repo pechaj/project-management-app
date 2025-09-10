@@ -142,7 +142,7 @@ export function TaskDeadlineInput({
   } else {
     try {
       safeDeadline = parseDate(deadline);
-    } catch (ex) {
+    } catch {
       safeDeadline = today(getLocalTimeZone());
     }
   }

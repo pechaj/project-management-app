@@ -1,167 +1,105 @@
-import { useState } from "react";
-import { Dialog } from "@mui/material";
+import type React from "react";
+import { type Key, useState } from "react";
+import { getLocalTimeZone, today } from "@internationalized/date";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useLocation } from "react-router";
+import { Heading, Label, ProgressBar } from "react-aria-components";
+import { useLocation, useNavigate } from "react-router";
+import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/EditProjectComponents";
+import {
+  TaskDeadlineInput,
+  TaskPlaceInput,
+  TaskProjectIdInput,
+  TaskUrgencyInput,
+} from "@components/EditTaskComponents";
 
 export default function NewTaskForm() {
-  const data = useLocation();
-  const projectCode = data.state.projectCode;
-  const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({
-    code: "",
-    projectId: projectCode,
-    description: "",
-    deadline: "",
-    urgency: "",
-    place: "",
-    deleted: false,
-  });
+  const navigate = useNavigate();
+  const projectCode = useLocation().state.projectCode;
 
-  const handleChange = (event) => {
-    setForm({
-      ...form,
-      [event.target.id]: event.target.value,
-    });
+  const [code, setCode] = useState("");
+  const [description, setDescription] = useState("");
+  const [deadline, setDeadline] = useState<string>(today(getLocalTimeZone()).toString());
+  const [urgency, setUrgency] = useState("Not selected");
+  const [place, setPlace] = useState("");
+  const [deleted, setDeleted] = useState(false);
+
+  const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCode(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(event.target.value);
+  };
 
-    alert("Update request is being sent...");
+  const handleDeadlineChange = (newDate: string) => {
+    setDeadline(newDate);
+  };
 
+  const handleUrgencyChange = (key: Key | null) => {
+    setUrgency(key?.toString() ?? "None");
+  };
+
+  const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPlace(event.target.value);
+  };
+
+  const handleDeletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked: boolean = event.target.value === "on";
+    setDeleted(isChecked);
+  };
+
+  const handlePost = async () => {
     const newTask = {
-      code: form?.code ?? "",
-      projectId: form?.projectId ?? "",
-      description: form?.description ?? "",
-      deadline: form?.deadline ?? "",
-      urgency: form?.urgency,
-      place: form?.place ?? "",
-      deleted: form?.deleted === "on" ? true : false,
+      code: code ?? "",
+      projectId: projectCode ?? "",
+      description: description ?? "",
+      deadline: deadline ?? "",
+      urgency,
+      place: place ?? "",
+      deleted,
     };
 
-    await axios
-      .post("http://localhost:5295/api/Tasks", newTask)
-      .then((response) => {
-        alert("Task added successfully!");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    setSent(true);
-
-    setForm({
-      code: "",
-      projectId: projectCode,
-      description: "",
-      deadline: "",
-      urgency: "",
-      place: "",
-      deleted: false,
-    });
+    await axios.post("http://localhost:5295/api/Tasks", newTask);
   };
 
-  return (
-    <>
-      {sent ? (
-        <Dialog className="modal" onClose={() => setSent(false)} open={sent}>
-          <div className="modal-title">Task added successfully!</div>
-        </Dialog>
-      ) : (
-        <div className="container mx-auto w-50">
-          <form className="m-5" id="new-task-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <h5 className="">New task form</h5>
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="code">
-                Code
-              </label>
-              <input
-                className="form-control"
-                id="code"
-                name="code"
-                onChange={handleChange}
-                required
-                type="text"
-                value={form.code}
-              />
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="project-id">
-                Project ID
-              </label>
-              <input
-                className="form-control"
-                id="project-id"
-                name="project-id"
-                onChange={handleChange}
-                type="text"
-                value={form.projectId}
-              />
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="description">
-                Description
-              </label>
-              <textarea
-                className="form-control"
-                id="description"
-                name="description"
-                onChange={handleChange}
-                value={form.description}
-              />
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="deadline">
-                Deadline
-              </label>
-              <input
-                className="form-control"
-                id="deadline"
-                name="deadline"
-                onChange={handleChange}
-                type="date"
-                value={form.deadline}
-              />
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="urgency">
-                Urgency
-              </label>
-              <select className="form-control" id="urgency" name="urgency" onChange={handleChange} value={form.urgency}>
-                <option value="4 - Low">4 - Low</option>
-                <option value="3 - Medium">3 - Medium</option>
-                <option value="2 - High">2 - High</option>
-                <option value="1 - Critical">1 - Critical</option>
-              </select>
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="place">
-                Place
-              </label>
-              <input className="form-control" id="place" name="place" onChange={handleChange} value={form.place} />
-            </div>
-            <div className="m-3">
-              <label className="form-label" htmlFor="deleted">
-                Deleted
-              </label>
-              <input
-                checked={form.deleted}
-                className="form-check-input"
-                id="deleted"
-                name="deleted"
-                onChange={handleChange}
-                type="checkbox"
-              />
-            </div>
+  const postMutation = useMutation({
+    mutationFn: handlePost,
+  });
 
-            <button className="btn btn-success" type="submit">
-              Save
-            </button>
-          </form>
-        </div>
-      )}
-    </>
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    await postMutation.mutateAsync();
+  };
+
+  if (postMutation.isPending) {
+    return (
+      <div className="m-3 text-center align-items-center">
+        <Label className="fs-2">Creating new project...</Label>
+        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+      </div>
+    );
+  }
+
+  if (postMutation.isSuccess) {
+    navigate("/projects");
+  }
+
+  return (
+    <form className="container mx-auto w-25" id="new-task-form" onSubmit={handleSubmit}>
+      <Heading className="fs-2 my-2 text-center">New Task</Heading>
+      <ProjectCodeInput code={code} handleCodeChange={handleCodeChange} isDisabled={false} />
+      <TaskProjectIdInput projectId={projectCode} />
+      <ProjectNotesInput handleNotesChange={handleDescriptionChange} notes={description} />
+      <TaskDeadlineInput deadline={deadline} handleDeadlineChange={handleDeadlineChange} />
+      <TaskUrgencyInput handleUrgencyChange={handleUrgencyChange} urgency={urgency} />
+      <TaskPlaceInput handlePlaceChange={handlePlaceChange} place={place} />
+      <ProjectDeletedInput deleted={deleted} handleDeletedChange={handleDeletedChange} isDisabled={false} />
+
+      <button className="btn btn-success" type="submit">
+        Save
+      </button>
+    </form>
   );
 }

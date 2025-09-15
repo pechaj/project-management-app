@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Button, Checkbox, Form, Input, Label, ProgressBar, TextArea, TextField } from "react-aria-components";
+import { ModalHeader } from "@components/ModalHeader";
 import type { project } from "@/project-types/project.tsx";
-import { ModalHeader } from "./ModalHeader.tsx";
 
 export function EditProjectForm({ object }: { object: project }) {
   const [name, setName] = useState(object.name);
@@ -61,7 +61,7 @@ export function EditProjectForm({ object }: { object: project }) {
       style={{ padding: "20px", width: "500px" }}
     >
       <ModalHeader title="Project editation form" />
-      <ProjectCodeInput code={object.code} />
+      <ProjectCodeInput code={object.code} handleCodeChange={undefined} isDisabled={true} />
       <ProjectNameInput handleNameChange={handleNameChange} name={name} />
       <ProjectNotesInput handleNotesChange={handleNotesChange} notes={notes} />
       <ProjectDeletedInput deleted={object.deleted} />
@@ -73,11 +73,19 @@ export function EditProjectForm({ object }: { object: project }) {
   );
 }
 
-export function ProjectCodeInput({ code }: { code: string }) {
+export function ProjectCodeInput({
+  code,
+  handleCodeChange,
+  isDisabled,
+}: {
+  code: string;
+  handleCodeChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  isDisabled: boolean;
+}) {
   return (
-    <TextField className="m-3" isDisabled type="text">
+    <TextField className="m-3" isDisabled={isDisabled} type="text">
       <Label className="form-label">Code</Label>
-      <Input className="form-control" value={code} />
+      <Input className="form-control" onChange={handleCodeChange} value={code} />
     </TextField>
   );
 }

@@ -3,15 +3,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Button, DialogTrigger, Modal, ProgressBar } from "react-aria-components";
 import { useLocation, useParams } from "react-router-dom";
-import { EditTaskModal } from "./EditTaskModal.tsx";
+import { EditTaskModal } from "@components/EditTaskModal.tsx";
 
 const getTask = async (taskCode: string, projectId: string) => {
   const response = await axios.get(`http://localhost:5295/api/Tasks/${taskCode}?projectId=${projectId}`);
-  return response;
-};
-
-const deleteTask = async (taskCode: string, projectId: string) => {
-  const response = await axios.delete(`http://localhost:5295/api/Tasks/${taskCode}/delete?projectCode=${projectId}`);
   return response;
 };
 
@@ -25,13 +20,18 @@ export default function TaskDetail() {
     queryFn: ({ queryKey }) => getTask(queryKey[1], queryKey[2]),
   });
 
+  const deleteTask = async () => {
+    const response = await axios.delete(`http://localhost:5295/api/Tasks/${taskCode}/delete?projectCode=${projectId}`);
+    return response;
+  };
+
   const handleDelete = () => {
-    deleteMutation.mutate({ taskCode, projectId });
+    deleteMutation.mutate();
   };
 
   const deleteMutation = useMutation({
     mutationKey: ["deleteTask"],
-    mutationFn: ({ taskCodeDel, projectIdDel }) => deleteTask(taskCodeDel, projectIdDel),
+    mutationFn: deleteTask,
   });
 
   if (deleteMutation.isPending) {

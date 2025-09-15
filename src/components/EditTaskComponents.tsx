@@ -105,12 +105,12 @@ export function EditTaskForm({ object }: { object: task }) {
       style={{ padding: "20px", width: "500px" }}
     >
       <ModalHeader title="Task editation form" />
-      <ProjectCodeInput code={object.code} />
+      <ProjectCodeInput code={object.code} isDisabled={false} />
       <TaskProjectIdInput projectId={object.projectId} />
       <ProjectNotesInput handleNotesChange={handleDescriptionChange} notes={description} />
       <TaskDeadlineInput deadline={deadline} handleDeadlineChange={handleDeadlineChange} />
       <TaskUrgencyInput handleUrgencyChange={handleUrgencyChange} urgency={urgency} />
-      <ProjectDeletedInput deleted={object.deleted} />
+      <ProjectDeletedInput deleted={object.deleted} isDisabled={false} />
       <TaskPlaceInput handlePlaceChange={handlePlaceChange} place={place} />
 
       <Button className="btn btn-primary m-3" type="submit">

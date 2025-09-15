@@ -64,7 +64,7 @@ export function EditProjectForm({ object }: { object: project }) {
       <ProjectCodeInput code={object.code} handleCodeChange={undefined} isDisabled={true} />
       <ProjectNameInput handleNameChange={handleNameChange} name={name} />
       <ProjectNotesInput handleNotesChange={handleNotesChange} notes={notes} />
-      <ProjectDeletedInput deleted={object.deleted} />
+      <ProjectDeletedInput deleted={object.deleted} isDisabled={true} />
 
       <Button className="btn btn-primary" type="submit">
         Save
@@ -79,11 +79,11 @@ export function ProjectCodeInput({
   isDisabled,
 }: {
   code: string;
-  handleCodeChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  handleCodeChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
   isDisabled: boolean;
 }) {
   return (
-    <TextField className="m-3" isDisabled={isDisabled} type="text">
+    <TextField className="m-3" isDisabled={isDisabled} isRequired type="text">
       <Label className="form-label">Code</Label>
       <Input className="form-control" onChange={handleCodeChange} value={code} />
     </TextField>
@@ -98,7 +98,7 @@ export function ProjectNameInput({
   handleNameChange: React.ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
-    <TextField className="m-3" type="text">
+    <TextField className="m-3" isRequired type="text">
       <Label className="form-label">Name</Label>
       <Input className="form-control" onChange={handleNameChange} value={name} />
     </TextField>
@@ -120,10 +120,18 @@ export function ProjectNotesInput({
   );
 }
 
-export function ProjectDeletedInput({ deleted }: { deleted: boolean }) {
+export function ProjectDeletedInput({
+  deleted,
+  isDisabled,
+  handleDeletedChange,
+}: {
+  deleted: boolean;
+  isDisabled: boolean;
+  handleDeletedChange?: any | undefined;
+}) {
   return (
     <div className="m-3">
-      <Checkbox isDisabled isSelected={deleted}>
+      <Checkbox isDisabled={isDisabled} isSelected={deleted} onChange={handleDeletedChange}>
         Deleted
       </Checkbox>
     </div>

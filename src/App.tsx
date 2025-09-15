@@ -11,9 +11,9 @@ import TaskDetail from "@components/TaskDetail.tsx";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar />
+    <BrowserRouter>
+      <Navbar />
+      <div className="bg">
         <Routes>
           <Route element={<ProjectList />} path="/projects" />
           <Route element={<ProjectDetail />} path="/projects/:projectCode" />
@@ -21,8 +21,8 @@ function App() {
           <Route element={<NewProjectForm />} path="/projects/new" />
           <Route element={<NewTaskForm />} path="/tasks/new" />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

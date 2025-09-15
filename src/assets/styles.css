@@ -2,15 +2,23 @@
   --primary: #363537;
   --secondary: #dced31;
   --tertiary: #0cce6b;
+  --background: linear-gradient(180deg, #363537 0%, rgba(220, 237, 49, 1) 100%);
 }
-
-.App1 {
-  text-align: center;
+body {
+  min-height: 100%;
+}
+.bg {
+  min-height: 100%;
+  background: var(--background);
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.secondary-font-color {
+  color: var(--secondary);
 }
 
 .navbar-primary {
@@ -21,7 +29,7 @@
   background-color: var(--secondary);
   border: none;
   border-radius: 5px;
-  color: black;
+  color: var(--primary);
   padding: 10px 20px;
   cursor: pointer;
   justify-content: right;
@@ -32,7 +40,7 @@
 }
 
 .ProjectCard {
-  background-color: #cec9c9;
+  background-color: var(--secondary);
   border: 1px solid #111010;
   border-radius: 5px;
   padding: 10px;
@@ -50,14 +58,15 @@
 }
 
 .TaskCard {
-  background-color: #94b75f;
+  background-color: var(--primary);
+  color: white;
   border: 1px solid #cfc5c5;
   border-radius: 5px;
   margin: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: #82a34a;
+    background-color: #181515;
   }
 }
 
@@ -92,7 +101,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1a53c3;
   min-height: 30px;
   display: flex;
   grid-template-columns: auto 1fr auto;

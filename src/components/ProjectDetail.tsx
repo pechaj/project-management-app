@@ -10,8 +10,8 @@ export default function ProjectDetail() {
   const { code, name, notes, deleted, tasks } = object;
 
   return (
-    <div className="container">
-      <h2>{name}</h2>
+    <div className="secondary-font-color container p-3">
+      <h2 className="fw-bold">{name}</h2>
       <p>
         <b>Notes: </b>
         {notes}
@@ -24,7 +24,7 @@ export default function ProjectDetail() {
       </div>
       <DialogTrigger>
         {/* TODO: rework this section*/}
-        <Button className="btn btn-secondary">Edit Project</Button>
+        <Button className="btn btn-dark secondary-font-color">Edit Project</Button>
         <Modal isDismissable>
           <EditProjectModal object={object} />
         </Modal>

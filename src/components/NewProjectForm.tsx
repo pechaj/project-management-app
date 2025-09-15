@@ -71,16 +71,18 @@ export default function NewProjectForm() {
   }
 
   return (
-    <form className="container mx-auto w-25" onSubmit={handleSubmit}>
-      <Heading className="fs-2 my-2 text-center">New Project</Heading>
+    <form className="container mx-auto w-25 py-2" onSubmit={handleSubmit}>
+      <Heading className="fs-2 secondary-font-color mb-2 text-center">New Project</Heading>
       <ProjectCodeInput code={code} handleCodeChange={handleCodeChange} isDisabled={false} />
       <ProjectNameInput handleNameChange={handleNameChange} name={name} />
       <ProjectNotesInput handleNotesChange={handleNotesChange} notes={notes} />
       <ProjectDeletedInput deleted={deleted} handleDeletedChange={handleDeletedChange} isDisabled={false} />
 
-      <Button className="btn btn-success" type="submit">
-        Save
-      </Button>
+      <div className="text-center">
+        <Button className="btn btn-dark secondary-font-color" type="submit">
+          Save
+        </Button>
+      </div>
     </form>
   );
 }

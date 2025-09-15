@@ -92,7 +92,7 @@ export function ProjectCodeInput({
 }) {
   return (
     <TextField className="m-3" isDisabled={isDisabled} isRequired type="text">
-      <Label className="form-label">Code</Label>
+      <Label className="form-label secondary-font-color">Code</Label>
       <Input className="form-control" onChange={handleCodeChange} value={code} />
     </TextField>
   );
@@ -107,7 +107,7 @@ export function ProjectNameInput({
 }) {
   return (
     <TextField className="m-3" isRequired type="text">
-      <Label className="form-label">Name</Label>
+      <Label className="form-label secondary-font-color">Name</Label>
       <Input className="form-control" onChange={handleNameChange} value={name} />
     </TextField>
   );

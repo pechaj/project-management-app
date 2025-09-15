@@ -35,7 +35,7 @@ export default function ProjectList() {
   }
 
   return (
-    <div className="container">
+    <div className="container py-2">
       <Button className="btn btn-secondary" onPress={() => refetch()}>
         Refetch
       </Button>

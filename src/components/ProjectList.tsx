@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "react-aria-components";
+import { Button, Label } from "react-aria-components";
 import "@assets/styles.css";
 import type { project } from "@project-types/project.tsx";
 import axios from "axios";
@@ -39,9 +39,11 @@ export default function ProjectList() {
       <Button className="btn btn-secondary" onPress={() => refetch()}>
         Refetch
       </Button>
-      {data.data.map((object: project) => (
-        <ProjectBlock key={object.code} object={object} />
-      ))}
+      {data.data.length > 0 ? (
+        data.data.map((object: project) => <ProjectBlock key={object.code} object={object} />)
+      ) : (
+        <Label className="mx-auto my-3">No projects found. Create a new one!</Label>
+      )}
     </div>
   );
 }

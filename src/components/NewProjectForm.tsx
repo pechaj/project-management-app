@@ -67,7 +67,7 @@ export default function NewProjectForm() {
   }
 
   if (postMutation.isSuccess) {
-    navigate(-1);
+    navigate("/projects");
   }
 
   return (

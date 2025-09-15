@@ -186,7 +186,7 @@ export function TaskUrgencyInput({
   handleUrgencyChange: (key: Key | null) => void;
 }) {
   return (
-    <Select className="m-3" onSelectionChange={handleUrgencyChange} selectedKey={urgency}>
+    <Select className="m-3" isRequired onSelectionChange={handleUrgencyChange} selectedKey={urgency}>
       <Label>Urgency:</Label>
       <br />
       <Button>

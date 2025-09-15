@@ -53,9 +53,17 @@ export function EditProjectForm({ object }: { object: project }) {
     return <Label>There was a problem saving the project: {putMutation.error.message}</Label>;
   }
 
+  if (putMutation.isSuccess) {
+    return (
+      <Label className="fs-4 mx-auto text-center">
+        Project was successfully updated. (To see changes, reload the page)
+      </Label>
+    );
+  }
+
   return (
     <Form
-      className="modal-body"
+      className="modal-body mx-auto"
       id="edit-project-form"
       onSubmit={handleSubmit}
       style={{ padding: "20px", width: "500px" }}
@@ -66,7 +74,7 @@ export function EditProjectForm({ object }: { object: project }) {
       <ProjectNotesInput handleNotesChange={handleNotesChange} notes={notes} />
       <ProjectDeletedInput deleted={object.deleted} isDisabled={true} />
 
-      <Button className="btn btn-primary" type="submit">
+      <Button className="btn btn-success" type="submit">
         Save
       </Button>
     </Form>

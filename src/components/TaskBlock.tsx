@@ -1,11 +1,11 @@
 import { NewTaskButton } from "./NewTaskButton.tsx";
 import { TaskItem } from "./TaskItem.tsx";
 
-export function TaskBlock({ tasks, code }: { tasks: string[]; code: string }) {
+export function TaskBlock({ tasks, code }: { tasks: Record<string, string>; code: string }) {
   return (
     <div className="TaskList container list-group list-group-flush p-2">
-      {tasks?.map((task: string) => (
-        <TaskItem key={task} projectId={code} taskCode={task} />
+      {Object.entries(tasks).map(([key, value]) => (
+        <TaskItem key={key} projectId={code} taskCode={value} />
       ))}
       <NewTaskButton code={code} />
     </div>

@@ -21,7 +21,7 @@ function DeleteButton({
     >
       {({ isPending }) => (
         <>
-          {!isPending && (deleted ? <span>Delete</span> : <span>Restore</span>)}
+          {!isPending && (deleted ? <span>Restore</span> : <span>Delete</span>)}
           {isPending && <ProgressBar aria-label="Saving..." className="loader" isIndeterminate />}
         </>
       )}

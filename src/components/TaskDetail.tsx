@@ -1,12 +1,17 @@
 import type { task } from "@project-types/task.tsx";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Button, DialogTrigger, Modal } from "react-aria-components";
+import { Button, DialogTrigger, Modal, ProgressBar } from "react-aria-components";
 import { useLocation, useParams } from "react-router-dom";
 import { EditTaskModal } from "./EditTaskModal.tsx";
 
 const getTask = async (taskCode: string, projectId: string) => {
   const response = await axios.get(`http://localhost:5295/api/Tasks/${taskCode}?projectId=${projectId}`);
+  return response;
+};
+
+const deleteTask = async (taskCode: string, projectId: string) => {
+  const response = await axios.delete(`http://localhost:5295/api/Tasks/${taskCode}/delete?projectCode=${projectId}`);
   return response;
 };
 
@@ -19,6 +24,23 @@ export default function TaskDetail() {
     queryKey: ["task", taskCode, projectId],
     queryFn: ({ queryKey }) => getTask(queryKey[1], queryKey[2]),
   });
+
+  const handleDelete = () => {
+    deleteMutation.mutate({ taskCode, projectId });
+  };
+
+  const deleteMutation = useMutation({
+    mutationKey: ["deleteTask"],
+    mutationFn: ({ taskCodeDel, projectIdDel }) => deleteTask(taskCodeDel, projectIdDel),
+  });
+
+  if (deleteMutation.isPending) {
+    return (
+      <div className="m-3">
+        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+      </div>
+    );
+  }
 
   if (!data) {
     return null;
@@ -69,10 +91,14 @@ export default function TaskDetail() {
 
       <DialogTrigger>
         <Button className="btn btn-secondary">Edit Task</Button>
+        {/* TODO: fix the modal not showing up in front of the detail */}
         <Modal className="container">
           <EditTaskModal object={object} />
         </Modal>
       </DialogTrigger>
+      <Button className="btn btn-danger m-2" onPress={handleDelete}>
+        Delete Task
+      </Button>
     </div>
   );
 }

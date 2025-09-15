@@ -1,42 +1,49 @@
-import { Link } from "react-router-dom";
-import axios from "axios";
+import type { project } from "@project-types/project";
 import { useQuery } from "@tanstack/react-query";
-import DeleteButton from "./DeleteButton.tsx";
-import { project } from "./ProjectList.tsx";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import DeleteButton from "@components/DeleteButton";
 
 const deleteProject = async (projectCode: string, deleted: boolean) => {
-    await axios.delete(`/api/Projects/${projectCode}/delete`).then(response => {
-        if (!deleted) {
-            alert(`Project marked as deleted successfully`);
-        } else {
-            alert("Project marked as restored successfully`)");
-        }
-        return true;
-    }).catch(error => {
-        console.error("Error deleting project:", error);
-        return false;
+  // TODO: Redo this section using useMutation
+  await axios
+    .delete(`/api/Projects/${projectCode}/delete`)
+    .then(() => {
+      if (deleted) {
+        alert("Project marked as restored successfully`)");
+      } else {
+        alert("Project marked as deleted successfully");
+      }
+      return true;
+    })
+    .catch((error) => {
+      console.error("Error deleting project:", error);
+      return false;
     });
-    return true;
-}
+  return true;
+};
 
-function ProjectHeader({ project }: { project: project }) {
+function ProjectHeader({ object }: { object: project }) {
+  const { code, name, deleted } = object;
 
-    const { code, name, deleted } = project;
-    // TODO: change to useMutation
-    const { isFetching, isError, refetch } = useQuery({
-        queryKey: ["delete-project", code],
-        queryFn: () => deleteProject(code, deleted),
-        enabled: false,
-    });
+  const { isFetching, refetch } = useQuery({
+    queryKey: ["delete-project", code],
+    queryFn: () => deleteProject(code, deleted),
+    enabled: false,
+  });
 
-    return (
-        <div className="row">
-            <Link className="col-11 h4 link-offset-2 link-underline link-underline-opacity-0"
-                to={`/projects/${code}`} state={{ project: project }}>{name} ({code})</Link>
-
-            <DeleteButton isFetching={isFetching} deleted={deleted} refetch={refetch} />
-        </div>
-    )
+  return (
+    <div className="row">
+      <Link
+        className="h4 link-offset-2 link-underline link-underline-opacity-0 col-11"
+        state={{ object }}
+        to={`/projects/${code}`}
+      >
+        {name} ({code})
+      </Link>
+      <DeleteButton deleted={deleted} isFetching={isFetching} refetch={refetch} />
+    </div>
+  );
 }
 
 export default ProjectHeader;

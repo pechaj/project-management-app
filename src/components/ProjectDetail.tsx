@@ -2,11 +2,12 @@ import { Button, DialogTrigger, Modal } from "react-aria-components";
 import { useLocation } from "react-router-dom";
 import { EditProjectModal } from "@components/EditProjectModal";
 import { TaskBlock } from "@components/TaskBlock";
+import type { project } from "@/project-types/project";
 
 export default function ProjectDetail() {
-  const project = useLocation().state.project;
+  const object: project = useLocation().state.object;
 
-  const { code, name, notes, deleted, tasks } = useLocation().state.project;
+  const { code, name, notes, deleted, tasks } = object;
 
   return (
     <div className="container">
@@ -25,7 +26,7 @@ export default function ProjectDetail() {
         {/* TODO: rework this section*/}
         <Button className="btn btn-secondary">Edit Project</Button>
         <Modal isDismissable>
-          <EditProjectModal object={project} />
+          <EditProjectModal object={object} />
         </Modal>
       </DialogTrigger>
     </div>

@@ -2,7 +2,7 @@ import type { task } from "@project-types/task.tsx";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Button, DialogTrigger, Modal, ProgressBar } from "react-aria-components";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { EditTaskModal } from "@components/EditTaskModal.tsx";
 
 const getTask = async (taskCode: string, projectId: string) => {
@@ -11,6 +11,8 @@ const getTask = async (taskCode: string, projectId: string) => {
 };
 
 export default function TaskDetail() {
+  const navigate = useNavigate();
+
   const taskCode = useParams().taskCode;
 
   const projectId = useLocation().state?.projectId;
@@ -43,6 +45,7 @@ export default function TaskDetail() {
   }
 
   if (!data) {
+    navigate("/projects");
     return null;
   }
 

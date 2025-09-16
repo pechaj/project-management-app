@@ -19,8 +19,8 @@ export default function ProjectList() {
 
   if (isPending) {
     return (
-      <div className="mx-auto">
-        <p>Loading...</p>
+      <div className="secondary-font-color py-2 text-center">
+        <Label className="fs-2 my-3">Fetching...</Label>
         <div className="loader" />
       </div>
     );
@@ -28,8 +28,12 @@ export default function ProjectList() {
 
   if (isError) {
     return (
-      <div className="mx-auto">
-        <span>Error: {error.message}</span>
+      <div className="secondary-font-color py-2 text-center">
+        <Label className="fs-2 my-3">Error: {error.message}</Label>
+        <br />
+        <Button className="btn btn-secondary" onPress={() => refetch()}>
+          Refetch
+        </Button>
       </div>
     );
   }

@@ -92,7 +92,7 @@ export function ProjectCodeInput({
 }) {
   return (
     <TextField className="m-3" isDisabled={isDisabled} isRequired type="text">
-      <Label className="form-label">Code</Label>
+      <Label className="form-label secondary-font-color">Code</Label>
       <Input className="form-control" onChange={handleCodeChange} value={code} />
     </TextField>
   );
@@ -122,7 +122,7 @@ export function ProjectNotesInput({
 }) {
   return (
     <TextField className="m-3" type="text">
-      <Label className="form-label">Notes</Label>
+      <Label className="form-label secondary-font-color">Notes</Label>
       <TextArea className="form-control" onChange={handleNotesChange} value={notes} />
     </TextField>
   );
@@ -135,7 +135,7 @@ export function ProjectDeletedInput({
 }: {
   deleted: boolean;
   isDisabled: boolean;
-  handleDeletedChange?: any | undefined;
+  handleDeletedChange?: (isSelected: boolean) => void | null;
 }) {
   return (
     <div className="m-3">

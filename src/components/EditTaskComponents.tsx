@@ -123,7 +123,7 @@ export function EditTaskForm({ object }: { object: task }) {
 export function TaskProjectIdInput({ projectId }: { projectId: string }) {
   return (
     <TextField className="m-3" isDisabled type="text">
-      <Label className="form-label">Project Id:</Label>
+      <Label className="form-label secondary-font-color">Project Id</Label>
       <Input className="form-control" value={projectId} />
     </TextField>
   );
@@ -158,9 +158,9 @@ export function TaskDeadlineInput({
       }}
       value={safeDeadline}
     >
-      <Label className="form-label">Deadline:</Label>
+      <Label className="form-label secondary-font-color">Deadline:</Label>
       {/* visible input */}
-      <Group className="d-flex justify-content-start w-50 rounded border">
+      <Group className="d-flex justify-content-start w-50 rounded border bg-white">
         <DateInput className="w-100 p-2">{(segment) => <DateSegment segment={segment} />}</DateInput>
         <Button className="rounded-end border">📅</Button>
       </Group>
@@ -187,7 +187,7 @@ export function TaskUrgencyInput({
 }) {
   return (
     <Select className="m-3" isRequired onSelectionChange={handleUrgencyChange} selectedKey={urgency}>
-      <Label>Urgency:</Label>
+      <Label className="secondary-font-color">Urgency:</Label>
       <br />
       <Button>
         <SelectValue />
@@ -214,7 +214,7 @@ export function TaskPlaceInput({
 }) {
   return (
     <TextField className="m-3">
-      <Label className="form-label">Place: </Label>
+      <Label className="form-label secondary-font-color">Place: </Label>
       <Input className="form-control" onChange={handlePlaceChange} value={place} />
     </TextField>
   );

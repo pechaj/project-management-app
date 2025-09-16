@@ -59,9 +59,9 @@ export default function NewProjectForm() {
 
   if (postMutation.isPending) {
     return (
-      <div className="m-3 text-center align-items-center">
-        <Label className="fs-2">Creating new project...</Label>
-        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+      <div className="p-3 text-center align-items-center">
+        <Label className="fs-2">Creating new task...</Label>
+        <ProgressBar aria-label="Working..." className="loader p-3" isIndeterminate />
       </div>
     );
   }

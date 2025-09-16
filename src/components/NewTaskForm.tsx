@@ -44,8 +44,7 @@ export default function NewTaskForm() {
     setPlace(event.target.value);
   };
 
-  const handleDeletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked: boolean = event.target.value === "on";
+  const handleDeletedChange = (isChecked: boolean) => {
     setDeleted(isChecked);
   };
 
@@ -75,9 +74,9 @@ export default function NewTaskForm() {
 
   if (postMutation.isPending) {
     return (
-      <div className="m-3 text-center align-items-center">
+      <div className="p-3 text-center align-items-center">
         <Label className="fs-2">Creating new project...</Label>
-        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+        <ProgressBar aria-label="Working..." className="loader p-3" isIndeterminate />
       </div>
     );
   }
@@ -88,7 +87,7 @@ export default function NewTaskForm() {
 
   return (
     <form className="container mx-auto w-25" id="new-task-form" onSubmit={handleSubmit}>
-      <Heading className="fs-2 my-2 text-center">New Task</Heading>
+      <Heading className="fs-2 secondary-font-color mb-2 text-center">New Task</Heading>
       <ProjectCodeInput code={code} handleCodeChange={handleCodeChange} isDisabled={false} />
       <TaskProjectIdInput projectId={projectCode} />
       <ProjectNotesInput handleNotesChange={handleDescriptionChange} notes={description} />

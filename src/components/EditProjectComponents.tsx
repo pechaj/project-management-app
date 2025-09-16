@@ -55,7 +55,7 @@ export function EditProjectForm({ object }: { object: project }) {
 
   if (putMutation.isSuccess) {
     return (
-      <Label className="fs-4 mx-auto text-center">
+      <Label className="fs-4 secondary-font-color mx-auto">
         Project was successfully updated. (To see changes, reload the page)
       </Label>
     );
@@ -63,7 +63,7 @@ export function EditProjectForm({ object }: { object: project }) {
 
   return (
     <Form
-      className="modal-body mx-auto"
+      className="mx-auto bg-light"
       id="edit-project-form"
       onSubmit={handleSubmit}
       style={{ padding: "20px", width: "500px" }}
@@ -92,7 +92,7 @@ export function ProjectCodeInput({
 }) {
   return (
     <TextField className="m-3" isDisabled={isDisabled} isRequired type="text">
-      <Label className="form-label secondary-font-color">Code</Label>
+      <Label className="form-label">Code</Label>
       <Input className="form-control" onChange={handleCodeChange} value={code} />
     </TextField>
   );
@@ -107,7 +107,7 @@ export function ProjectNameInput({
 }) {
   return (
     <TextField className="m-3" isRequired type="text">
-      <Label className="form-label secondary-font-color">Name</Label>
+      <Label className="form-label">Name</Label>
       <Input className="form-control" onChange={handleNameChange} value={name} />
     </TextField>
   );
@@ -131,7 +131,7 @@ export function ProjectNotesInput({
 export function ProjectDeletedInput({
   deleted,
   isDisabled,
-  handleDeletedChange,
+  handleDeletedChange = null,
 }: {
   deleted: boolean;
   isDisabled: boolean;

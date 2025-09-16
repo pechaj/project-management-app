@@ -1,14 +1,14 @@
 :root {
   --primary: #363537;
-  --secondary: #dced31;
+  --secondary: #d6e720;
   --tertiary: #0cce6b;
   --background: linear-gradient(180deg, #363537 0%, rgba(220, 237, 49, 1) 100%);
 }
 body {
-  min-height: 100%;
+  min-height: 100vh;
 }
 .bg {
-  min-height: 100%;
+  min-height: 100vh;
   background: var(--background);
 }
 
@@ -117,8 +117,22 @@ body {
 
 .react-aria-ListBoxItem:hover {
   background-color: aquamarine;
+  cursor: pointer;
 }
 .react-aria-ListBoxItem[data-selected] {
   background-color: rgb(150, 206, 20);
   border-radius: 2px;
+}
+
+.react-aria-ModalOverlay {
+  width: 100vw;
+  height: var(--visual-viewport-height);
+  z-index: 100;
+  background: #00000080;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
 }

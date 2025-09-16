@@ -12,7 +12,7 @@ const getTask = async (taskCode: string, projectId: string) => {
 
 export default function TaskDetail() {
   const navigate = useNavigate();
-
+  // TODO: this is bs, TS and Biome are clashing over a fix
   const taskCode = useParams().taskCode;
 
   const projectId = useLocation().state?.projectId;

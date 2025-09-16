@@ -1,31 +1,24 @@
-import { Button, ProgressBar } from "react-aria-components";
-import type { project } from "@/project-types/project";
+import { Button } from "react-aria-components";
 
 function DeleteButton({
   isFetching,
   deleted,
-  refetch,
+  handleDelete,
 }: {
   isFetching: boolean;
   deleted: boolean;
-  refetch: () => Promise<project[]>;
+  handleDelete: () => void;
 }) {
   return (
-    <Button
-      className="col m-2"
-      isDisabled={isFetching}
-      isPending={isFetching}
-      onPress={() => {
-        refetch();
-      }}
-    >
-      {({ isPending }) => (
-        <>
-          {!isPending && (deleted ? <span>Restore</span> : <span>Delete</span>)}
-          {isPending && <ProgressBar aria-label="Saving..." className="loader" isIndeterminate />}
-        </>
+    <>
+      {isFetching ? (
+        <div className="loader" />
+      ) : (
+        <Button className="col m-2" isDisabled={isFetching} onPress={handleDelete}>
+          {deleted ? <span>Restore</span> : <span>Delete</span>}
+        </Button>
       )}
-    </Button>
+    </>
   );
 }
 

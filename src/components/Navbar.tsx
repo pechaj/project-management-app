@@ -20,7 +20,7 @@ function Navbar() {
           }}
         />
       </Link>
-      <p className="navbar-text">
+      <p className="navbar-text secondary-font-color fs-4">
         <b>Project Management App</b>
       </p>
       <Link className="btn NewBtn" to="/projects/new">

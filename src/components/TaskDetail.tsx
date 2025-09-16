@@ -51,7 +51,7 @@ export default function TaskDetail() {
   if (isPending) {
     return (
       <div className="mx-auto">
-        <p>Loading...</p>
+        <p className="secondary-font-color">Loading...</p>
         <div className="loader" />
       </div>
     );
@@ -59,7 +59,7 @@ export default function TaskDetail() {
 
   if (isError) {
     return (
-      <div className="mx-auto">
+      <div className="secondary-font-color mx-auto">
         <span>Error: {error.message}</span>
       </div>
     );
@@ -67,7 +67,7 @@ export default function TaskDetail() {
   const { code, description, deleted, deadline, urgency, place } = object;
 
   return (
-    <div className="container">
+    <div className="secondary-font-color container mx-3 w-50 border border-3 border-warning-subtle bg-dark py-3">
       <h2>{code}</h2>
       <p>
         <b>Assigned to:</b> {projectId ?? "Unassigned"}
@@ -90,13 +90,13 @@ export default function TaskDetail() {
       </p>
 
       <DialogTrigger>
-        <Button className="btn btn-secondary">Edit Task</Button>
+        <Button className="btn btn-outline-secondary secondary-font-color">Edit Task</Button>
         {/* TODO: fix the modal not showing up in front of the detail */}
         <Modal className="container">
           <EditTaskModal object={object} />
         </Modal>
       </DialogTrigger>
-      <Button className="btn btn-danger m-2" onPress={handleDelete}>
+      <Button className="btn btn-outline-danger secondary-font-color m-2" onPress={handleDelete}>
         Delete Task
       </Button>
     </div>

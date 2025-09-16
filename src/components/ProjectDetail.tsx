@@ -10,7 +10,7 @@ export default function ProjectDetail() {
   const { code, name, notes, deleted, tasks } = object;
 
   return (
-    <div className="secondary-font-color container p-3">
+    <div className="secondary-font-color container mx-3 w-50 border border-3 border-warning-subtle bg-dark py-3">
       <h2 className="fw-bold">{name}</h2>
       <p>
         <b>Notes: </b>

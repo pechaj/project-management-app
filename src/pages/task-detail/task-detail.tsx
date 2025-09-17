@@ -95,7 +95,7 @@ export function TaskDetail() {
       <DialogTrigger>
         <Button className="btn btn-outline-secondary secondary-font-color">Edit Task</Button>
         {/* TODO: fix the modal not showing up in front of the detail */}
-        <Modal className="container">
+        <Modal isDismissable>
           <EditTaskModal object={object} />
         </Modal>
       </DialogTrigger>

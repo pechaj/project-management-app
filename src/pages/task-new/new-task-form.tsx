@@ -44,9 +44,9 @@ export function NewTaskForm() {
     setPlace(event.target.value);
   };
 
-  /*const handleDeletedChange = (isChecked: boolean) => {
-    setDeleted(isChecked);
-  };*/
+  const handleDeletedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDeleted(event.target.checked);
+  };
 
   const handlePost = async () => {
     const newTask = {
@@ -94,7 +94,7 @@ export function NewTaskForm() {
       <TaskDeadlineInput deadline={deadline} handleDeadlineChange={handleDeadlineChange} />
       <TaskUrgencyInput handleUrgencyChange={handleUrgencyChange} urgency={urgency} />
       <TaskPlaceInput handlePlaceChange={handlePlaceChange} place={place} />
-      <ProjectDeletedInput deleted={deleted} isDisabled={false} setDeleted={setDeleted} />
+      <ProjectDeletedInput deleted={deleted} handleDeletedChange={handleDeletedChange} isDisabled={false} />
 
       <button className="btn btn-success" type="submit">
         Save

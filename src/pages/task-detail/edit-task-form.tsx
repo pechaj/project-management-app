@@ -75,12 +75,16 @@ export function EditTaskForm({ object }: { object: task }) {
   }
 
   if (putMutation.isSuccess) {
-    return <Label>Task was successfully updated.</Label>;
+    return (
+      <Label className="fs-4 secondary-font-color text-center">
+        Task was successfully updated. (To see changes, reload the projects)
+      </Label>
+    );
   }
 
   return (
     <Form
-      className="modal-body"
+      className="mx-auto bg-light"
       id="edit-task-form"
       onSubmit={handleSubmit}
       style={{ padding: "20px", width: "500px" }}
@@ -94,7 +98,7 @@ export function EditTaskForm({ object }: { object: task }) {
       <ProjectDeletedInput deleted={object.deleted} isDisabled={false} />
       <TaskPlaceInput handlePlaceChange={handlePlaceChange} place={place} />
 
-      <Button className="btn btn-primary m-3" type="submit">
+      <Button className="btn btn-success" type="submit">
         Save
       </Button>
     </Form>

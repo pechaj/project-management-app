@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { DeleteButton } from "@pages/project-list/delete-button";
-import { queue } from "@/App";
+import { queue } from "@/app";
 
 export function ProjectHeader({ object }: { object: project }) {
   const { code, name, deleted } = object;

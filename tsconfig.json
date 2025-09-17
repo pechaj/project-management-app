@@ -56,5 +56,4 @@
     },
     "typeRoots": ["./src/project-types"]
   },
-  "include": ["src"]
 }

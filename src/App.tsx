@@ -9,8 +9,8 @@ import {
   UNSTABLE_ToastQueue as ToastQueue,
   UNSTABLE_ToastRegion as ToastRegion,
 } from "react-aria-components";
-import { Navbar } from "@components/Navbar";
-import { Routes } from "@routes/routes";
+import { Navbar } from "@components/navbar";
+import { BasicRouting } from "@routes/routes";
 
 // const APIUrl = "https://localhost:7148/api/";
 
@@ -27,7 +27,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <div className="bg">
-        <Routes />
+        <BasicRouting />
       </div>
       <ToastRegion queue={queue}>
         {({ toast }) => (

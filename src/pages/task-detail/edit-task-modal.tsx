@@ -5,7 +5,7 @@ import { EditTaskForm } from "@pages/task-detail/edit-task-form";
 const EditTaskModal = ({ object }: { object: task }) => {
   // Not working correctly as a modal
   return (
-    <Dialog role="dialog">
+    <Dialog className="w-50" role="dialog">
       <EditTaskForm object={object} />
     </Dialog>
   );

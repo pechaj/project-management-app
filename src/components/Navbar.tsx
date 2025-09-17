@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@assets/logo.svg";
+import logo from "@assets/logo.png";
 
 export function Navbar() {
   return (
@@ -11,8 +11,8 @@ export function Navbar() {
           role="img"
           style={{
             display: "inline-block",
-            width: "50px",
-            height: "50px",
+            width: "80px",
+            height: "80px",
             backgroundImage: `url(${logo})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",

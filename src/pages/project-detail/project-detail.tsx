@@ -23,7 +23,6 @@ export function ProjectDetail() {
         <TaskBlock code={code} tasks={tasks} />
       </div>
       <DialogTrigger>
-        {/* TODO: rework this section*/}
         <Button className="btn btn-dark secondary-font-color">Edit Project</Button>
         <Modal isDismissable>
           <EditProjectModal object={object} />

@@ -3,7 +3,7 @@ import { type Key, useState } from "react";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Heading, Label, ProgressBar } from "react-aria-components";
+import { Heading, Label } from "react-aria-components";
 import { useLocation, useNavigate } from "react-router";
 import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/edit-project-components";
 import {
@@ -12,6 +12,7 @@ import {
   TaskProjectIdInput,
   TaskUrgencyInput,
 } from "@components/edit-task-components";
+import { LoadingIcon } from "@/components/loading-icon";
 
 export function NewTaskForm() {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ export function NewTaskForm() {
     return (
       <div className="p-3 text-center align-items-center">
         <Label className="fs-2">Creating new project...</Label>
-        <ProgressBar aria-label="Working..." className="loader p-3" isIndeterminate />
+        <LoadingIcon />
       </div>
     );
   }

@@ -5,7 +5,7 @@ export function Navbar() {
   return (
     <nav className="navbar navbar-dark navbar-primary">
       <Link className="navbar-brand" to="/projects">
-        <span
+        {/*<span
           aria-label="Logo"
           className="logo"
           role="img"
@@ -18,7 +18,9 @@ export function Navbar() {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
-        />
+        />*/}
+        {/** biome-ignore lint/performance/noImgElement: <optimization> */}
+        <img alt="Logo" height="60px" loading="lazy" src={logo} width="80px" />
       </Link>
       <p className="navbar-text secondary-font-color fs-4">
         <b>Project Management App</b>

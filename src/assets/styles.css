@@ -78,25 +78,18 @@ body {
 }
 
 .loader {
-  width: 48px;
-  max-width: fit-content;
-  max-height: fit-content;
-  height: 48px;
-  border: 5px solid #35bad1;
-  border-bottom-color: transparent;
+  width: 50px;
+  aspect-ratio: 1;
   border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+  background:
+    radial-gradient(farthest-side, #fbff00 94%, #0000) top / 8px 8px no-repeat,
+    conic-gradient(#0000 30%, #010201);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: l13 1s infinite linear;
 }
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-
+@keyframes l13 {
   100% {
-    transform: rotate(360deg);
+    transform: rotate(1turn);
   }
 }
 

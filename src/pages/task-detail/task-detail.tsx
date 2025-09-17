@@ -1,9 +1,10 @@
 import type { task } from "@project-types/task.tsx";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Button, DialogTrigger, Modal, ProgressBar } from "react-aria-components";
+import { Button, DialogTrigger, Modal } from "react-aria-components";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { EditTaskModal } from "@pages/task-detail/edit-task-modal";
+import { LoadingIcon } from "@/components/loading-icon";
 
 const getTask = async (taskCode: string, projectId: string) => {
   const response = await axios.get(`http://localhost:5295/api/Tasks/${taskCode}?projectId=${projectId}`);
@@ -39,7 +40,7 @@ export function TaskDetail() {
   if (deleteMutation.isPending) {
     return (
       <div className="m-3">
-        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+        <LoadingIcon />
       </div>
     );
   }
@@ -55,7 +56,7 @@ export function TaskDetail() {
     return (
       <div className="mx-auto">
         <p className="secondary-font-color">Loading...</p>
-        <div className="loader" />
+        <LoadingIcon />
       </div>
     );
   }
@@ -94,7 +95,6 @@ export function TaskDetail() {
 
       <DialogTrigger>
         <Button className="btn btn-outline-secondary secondary-font-color">Edit Task</Button>
-        {/* TODO: fix the modal not showing up in front of the detail */}
         <Modal isDismissable>
           <EditTaskModal object={object} />
         </Modal>

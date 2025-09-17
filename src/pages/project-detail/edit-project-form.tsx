@@ -2,13 +2,14 @@ import { useState } from "react";
 import type { project } from "@project-types/project";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Button, Form, Label, ProgressBar } from "react-aria-components";
+import { Button, Form, Label } from "react-aria-components";
 import {
   ProjectCodeInput,
   ProjectDeletedInput,
   ProjectNameInput,
   ProjectNotesInput,
 } from "@components/edit-project-components";
+import { LoadingIcon } from "@components/loading-icon";
 import { ModalHeader } from "@components/modal-header";
 
 export function EditProjectForm({ object }: { object: project }) {
@@ -50,7 +51,7 @@ export function EditProjectForm({ object }: { object: project }) {
     return (
       <div className="m-3">
         <Label className="fs-2">Saving...</Label>
-        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+        <LoadingIcon />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import "@assets/styles.css";
 import type { project } from "@project-types/project.tsx";
 import axios from "axios";
 import { ProjectBlock } from "@pages/project-list/project-block";
+import { LoadingIcon } from "@/components/loading-icon";
 
 const getProjects = async () => {
   const response = await axios.get("/api/Projects");
@@ -21,7 +22,7 @@ export function ProjectList() {
     return (
       <div className="secondary-font-color py-2 text-center">
         <Label className="fs-2 my-3">Fetching...</Label>
-        <div className="loader" />
+        <LoadingIcon />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import { Button } from "react-aria-components";
+import { LoadingIcon } from "@/components/loading-icon";
 
 export function DeleteButton({
   isFetching,
@@ -12,7 +13,7 @@ export function DeleteButton({
   return (
     <>
       {isFetching ? (
-        <div className="loader" />
+        <LoadingIcon />
       ) : (
         <Button className="col m-2" isDisabled={isFetching} onPress={handleDelete}>
           {deleted ? <span>Restore</span> : <span>Delete</span>}

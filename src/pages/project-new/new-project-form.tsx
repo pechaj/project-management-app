@@ -2,7 +2,7 @@ import type React from "react";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Button, Heading, Label, ProgressBar } from "react-aria-components";
+import { Button, Heading, Label } from "react-aria-components";
 import { useNavigate } from "react-router-dom";
 import {
   ProjectCodeInput,
@@ -10,6 +10,7 @@ import {
   ProjectNameInput,
   ProjectNotesInput,
 } from "@components/edit-project-components";
+import { LoadingIcon } from "@/components/loading-icon";
 
 export function NewProjectForm() {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export function NewProjectForm() {
     return (
       <div className="p-3 text-center align-items-center">
         <Label className="fs-2">Creating new task...</Label>
-        <ProgressBar aria-label="Working..." className="loader p-3" isIndeterminate />
+        <LoadingIcon />
       </div>
     );
   }

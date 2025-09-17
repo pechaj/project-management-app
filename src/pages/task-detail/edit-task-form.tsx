@@ -2,7 +2,7 @@ import { type Key, useState } from "react";
 import type { task } from "@project-types/task";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Button, Form, Label, ProgressBar } from "react-aria-components";
+import { Button, Form, Label } from "react-aria-components";
 import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/edit-project-components";
 import {
   TaskDeadlineInput,
@@ -11,6 +11,7 @@ import {
   TaskUrgencyInput,
 } from "@components/edit-task-components";
 import { ModalHeader } from "@components/modal-header";
+import { LoadingIcon } from "@/components/loading-icon";
 
 export function EditTaskForm({ object }: { object: task }) {
   const [description, setDescription] = useState<string>(object.description);
@@ -65,7 +66,7 @@ export function EditTaskForm({ object }: { object: task }) {
     return (
       <div className="m-3">
         <Label className="fs-2">Saving...</Label>
-        <ProgressBar aria-label="Saving..." className="loader p-3" isIndeterminate />
+        <LoadingIcon />
       </div>
     );
   }

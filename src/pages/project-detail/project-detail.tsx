@@ -1,10 +1,10 @@
 import { Button, DialogTrigger, Modal } from "react-aria-components";
 import { useLocation } from "react-router-dom";
-import { EditProjectModal } from "@components/EditProjectModal";
-import { TaskBlock } from "@components/TaskBlock";
+import { EditProjectModal } from "@/pages/project-detail/EditProjectModal";
+import { TaskBlock } from "@/pages/project-list/TaskBlock";
 import type { project } from "@/project-types/project";
 
-export default function ProjectDetail() {
+export function ProjectDetail() {
   const object: project = useLocation().state.object;
 
   const { code, name, notes, deleted, tasks } = object;

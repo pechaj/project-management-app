@@ -1,6 +1,6 @@
 import type { project } from "@project-types/project";
 import { Dialog } from "react-aria-components";
-import { EditProjectForm } from "@components/EditProjectComponents";
+import { EditProjectForm } from "@pages/project-detail/edit-project-form";
 
 const EditProjectModal = ({ object }: { object: project }) => {
   return (

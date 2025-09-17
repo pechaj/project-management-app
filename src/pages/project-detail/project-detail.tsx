@@ -1,8 +1,8 @@
 import type { project } from "@project-types/project";
 import { Button, DialogTrigger, Modal } from "react-aria-components";
 import { useLocation } from "react-router-dom";
+import { TaskBlock } from "@components/TaskBlock";
 import { EditProjectModal } from "@pages/project-detail/edit-project-modal";
-import { TaskBlock } from "@pages/project-list/TaskBlock";
 
 export function ProjectDetail() {
   const object: project = useLocation().state.object;

@@ -5,15 +5,15 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Heading, Label, ProgressBar } from "react-aria-components";
 import { useLocation, useNavigate } from "react-router";
-import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/EditProjectComponents";
+import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/edit-project-components";
 import {
   TaskDeadlineInput,
   TaskPlaceInput,
   TaskProjectIdInput,
   TaskUrgencyInput,
-} from "@components/EditTaskComponents";
+} from "@components/edit-task-components";
 
-export default function NewTaskForm() {
+export function NewTaskForm() {
   const navigate = useNavigate();
   const projectCode = useLocation().state.projectCode;
 
@@ -44,9 +44,9 @@ export default function NewTaskForm() {
     setPlace(event.target.value);
   };
 
-  const handleDeletedChange = (isChecked: boolean) => {
+  /*const handleDeletedChange = (isChecked: boolean) => {
     setDeleted(isChecked);
-  };
+  };*/
 
   const handlePost = async () => {
     const newTask = {

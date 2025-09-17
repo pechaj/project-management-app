@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Button, DialogTrigger, Modal, ProgressBar } from "react-aria-components";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { EditTaskModal } from "@pages/task-detail/EditTaskModal";
+import { EditTaskModal } from "@pages/task-detail/edit-task-modal";
 
 const getTask = async (taskCode: string, projectId: string) => {
   const response = await axios.get(`http://localhost:5295/api/Tasks/${taskCode}?projectId=${projectId}`);

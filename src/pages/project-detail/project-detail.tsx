@@ -1,7 +1,7 @@
 import type { project } from "@project-types/project";
 import { Button, DialogTrigger, Modal } from "react-aria-components";
 import { useLocation } from "react-router-dom";
-import { TaskBlock } from "@components/TaskBlock";
+import { TaskBlock } from "@components/task-block";
 import { EditProjectModal } from "@pages/project-detail/edit-project-modal";
 
 export function ProjectDetail() {

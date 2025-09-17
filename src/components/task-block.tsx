@@ -1,5 +1,5 @@
-import { NewTaskButton } from "@components/NewTaskButton";
-import { TaskItem } from "@components/TaskItem";
+import { NewTaskButton } from "@components/new-task-button";
+import { TaskItem } from "@components/task-item";
 
 export function TaskBlock({ tasks, code }: { tasks: Record<string, string>; code: string }) {
   return (

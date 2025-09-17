@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "@assets/logo.svg";
 
-function Navbar() {
+export function Navbar() {
   return (
     <nav className="navbar navbar-dark navbar-primary">
       <Link className="navbar-brand" to="/projects">
@@ -29,5 +29,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { project } from "@project-types/project";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Button, Form, Label, ProgressBar } from "react-aria-components";
@@ -7,9 +8,8 @@ import {
   ProjectDeletedInput,
   ProjectNameInput,
   ProjectNotesInput,
-} from "@/components/EditProjectComponents";
-import { ModalHeader } from "@/components/ModalHeader";
-import type { project } from "@/project-types/project";
+} from "@components/edit-project-components";
+import { ModalHeader } from "@components/modal-header";
 
 export function EditProjectForm({ object }: { object: project }) {
   const [name, setName] = useState(object.name);

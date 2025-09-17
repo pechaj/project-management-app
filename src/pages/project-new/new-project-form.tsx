@@ -9,7 +9,7 @@ import {
   ProjectDeletedInput,
   ProjectNameInput,
   ProjectNotesInput,
-} from "@components/EditProjectComponents";
+} from "@components/edit-project-components";
 
 export function NewProjectForm() {
   const navigate = useNavigate();

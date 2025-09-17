@@ -3,14 +3,14 @@ import type { task } from "@project-types/task";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Button, Form, Label, ProgressBar } from "react-aria-components";
-import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/EditProjectComponents";
+import { ProjectCodeInput, ProjectDeletedInput, ProjectNotesInput } from "@components/edit-project-components";
 import {
   TaskDeadlineInput,
   TaskPlaceInput,
   TaskProjectIdInput,
   TaskUrgencyInput,
-} from "@components/EditTaskComponents";
-import { ModalHeader } from "@components/ModalHeader";
+} from "@components/edit-task-components";
+import { ModalHeader } from "@components/modal-header";
 
 export function EditTaskForm({ object }: { object: task }) {
   const [description, setDescription] = useState<string>(object.description);

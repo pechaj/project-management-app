@@ -31,7 +31,7 @@ export function ProjectHeader({ object }: { object: project }) {
       <Link
         className="h4 link-offset-2 link-underline link-underline-opacity-0 col-11"
         state={{ object }}
-        to={`/projects/${code}`}
+        to={"/projects/detail"}
       >
         {name} ({code})
       </Link>

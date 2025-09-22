@@ -13,8 +13,8 @@ const getTask = async (taskCode: string, projectId: string) => {
 
 export function TaskDetail() {
   const navigate = useNavigate();
-  // TODO: this is bs, TS and Biome are clashing over a fix
-  const taskCode = useParams().taskCode;
+
+  const taskCode = useLocation().state?.taskCode;
 
   const projectId = useLocation().state?.projectId;
 
@@ -36,6 +36,14 @@ export function TaskDetail() {
     mutationKey: ["deleteTask"],
     mutationFn: deleteTask,
   });
+
+  if (!useLocation().state) {
+    return (
+      <div className="secondary-font-color mx-auto">
+        <span>False redirect.</span>
+      </div>
+    );
+  }
 
   if (deleteMutation.isPending) {
     return (

@@ -5,7 +5,15 @@ import { TaskBlock } from "@components/task-block";
 import { EditProjectModal } from "@pages/project-detail/edit-project-modal";
 
 export function ProjectDetail() {
-  const object: project = useLocation().state.object;
+  const object: project = useLocation().state?.object;
+
+  if (!useLocation().state) {
+    return (
+      <div className="secondary-font-color mx-auto">
+        <span>False redirect.</span>
+      </div>
+    );
+  }
 
   const { code, name, notes, deleted, tasks } = object;
 

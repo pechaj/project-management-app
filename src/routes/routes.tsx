@@ -9,8 +9,8 @@ export function BasicRouting() {
   return (
     <Routes>
       <Route element={<ProjectList />} path="/projects" />
-      <Route element={<ProjectDetail />} path="/projects/:projectCode" />
-      <Route element={<TaskDetail />} path="/tasks/:taskCode" />
+      <Route element={<ProjectDetail />} path="/projects/detail" />
+      <Route element={<TaskDetail />} path="/tasks/detail" />
       <Route element={<NewProjectForm />} path="/projects/new" />
       <Route element={<NewTaskForm />} path="/tasks/new" />
     </Routes>
